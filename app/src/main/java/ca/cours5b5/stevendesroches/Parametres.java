@@ -1,5 +1,6 @@
 package ca.cours5b5.stevendesroches;
 
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,5 +12,7 @@ public class Parametres extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parametres);
         Log.d("MonEtiquette","Bonjour!");
+        Log.d("Greeting",this.getResources().getString(R.string.Greet));
+        Log.d("Landscape",this.getResources().getString(R.string.Landscape));
     }
 }

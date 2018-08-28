@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">StevenDesroches</string>
+    <string name="IDENTIFIANT">1580856</string>
+    <string name="Greet">Bonjour!</string>
 </resources>

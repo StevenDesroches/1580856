@@ -1,18 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ca.cours5b5.stevendesroches.vues.VParametres xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Parametres">
+    tools:context=".activites.AParametres">
 
     <TextView
+        android:id="@+id/textHauteur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="235dp"
+        android:text="@string/textVHauteur"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerHauteur"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/textLargeur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="288dp"
+        android:text="@string/textVLargeur"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerLargeur"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textGagner"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_marginEnd="248dp"
+        android:layout_marginRight="248dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="338dp"
+        android:text="@string/textVGagner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerLargeur"
+        android:layout_width="75dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="128dp"
+        android:layout_marginTop="287dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textLargeur"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerGagner"
+        android:layout_width="75dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="128dp"
+        android:layout_marginLeft="143dp"
+        android:layout_marginRight="128dp"
+        android:layout_marginStart="143dp"
+        android:layout_marginTop="337dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerHauteur"
+        android:layout_width="75dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="128dp"
+        android:layout_marginTop="234dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textHauteur"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</ca.cours5b5.stevendesroches.vues.VParametres>

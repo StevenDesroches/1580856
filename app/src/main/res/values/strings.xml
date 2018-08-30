@@ -2,4 +2,7 @@
     <string name="app_name">StevenDesroches</string>
     <string name="IDENTIFIANT">1580856</string>
     <string name="Greet">Bonjour!</string>
+    <string name="textVHauteur">Hauteur:</string>
+    <string name="textVLargeur">Largeur:</string>
+    <string name="textVGagner">Pour gagner:</string>
 </resources>

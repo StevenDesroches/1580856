@@ -1,16 +1,15 @@
 package ca.cours5b5.stevendesroches.vues;
 
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import ca.cours5b5.stevendesroches.global.GConstantes;
-import java.lang.reflect.Array;
 
 import ca.cours5b5.stevendesroches.R;
 
-public class VParametres extends ConstraintLayout {
+public class VParametres extends Vue {
 
     public VParametres(Context context){
         super(context);
@@ -44,6 +43,10 @@ public class VParametres extends ConstraintLayout {
         generation(GConstantes.LARGEUR_MAX, GConstantes.LARGEUR_MIN, GConstantes.LARGEUR_DEFAULT, adapterLargeur, spinnerLargeur);
         generation(GConstantes.GAGNER_MAX, GConstantes.GAGNER_MIN, GConstantes.GAGNER_DEFAULT, adapterGagner, spinnerGagner);
 
+    }
+
+    static {
+        Log.d("Atelier04",VMenuPrincipal.class.getSimpleName()  + "::static");
     }
 
     private void generation(Integer max, Integer min, Integer defaut, ArrayAdapter<Integer> adapter, Spinner spinner) {

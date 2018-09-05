@@ -4,4 +4,5 @@
     <string name="textVHauteur">Height:</string>
     <string name="textVLargeur">Width:</string>
     <string name="textVGagner">To win:</string>
+    <string name="boutonParam">SETTINGS</string>
 </resources>

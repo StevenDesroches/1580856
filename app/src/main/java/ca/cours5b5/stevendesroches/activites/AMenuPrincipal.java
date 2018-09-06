@@ -28,7 +28,7 @@ public class AMenuPrincipal extends Activite{
         Log.d("Atelier04",AMenuPrincipal.class.getSimpleName() + "::static");
     }
 
-    public void accessParam () {
+    private void accessParam () {
         Intent monIntention = new Intent(this, AParametres.class);
         this.startActivity(monIntention);
     }

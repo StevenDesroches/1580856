@@ -53,12 +53,6 @@ public class VParametres extends Vue {
         int compt = 0;
         boolean set = true;
 
-        if (max < min) {
-            Integer temp = max;
-            max = min;
-            min = temp;
-        }
-
         for (int i = min; i <= max; i++) {
             adapter.add(i);
 

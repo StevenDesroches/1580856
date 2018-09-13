@@ -1,46 +1,88 @@
 package ca.cours5b5.stevendesroches.modeles;
 
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import ca.cours5b5.stevendesroches.global.GConstantes;
 
 import ca.cours5b5.stevendesroches.serialisation.AttributSerialisable;
 
 public class MParametres extends Modele {
 
-    public static MParametres instance;
+    public static MParametres instance = new MParametres();
 
     @AttributSerialisable
-    public Integer hauteur;
+    public Integer hauteur = GConstantes.HAUTEUR_DEFAULT;;
+    private final String __hauteur ="hauteur";
 
     @AttributSerialisable
-    public Integer largeur;
+    public Integer largeur = GConstantes.LARGEUR_DEFAULT;;
+    private final String __largeur ="largeur";
 
     @AttributSerialisable
-    public Integer pourGagner;
+    public Integer pourGagner = GConstantes.GAGNER_DEFAULT;;
+    private final String __pourGagner ="pourGagner";
 
-    private List<Integer> choixHauteur;
-    private List<Integer> choixLargeur;
-    private List<Integer> choixPourGagner;
+    public List<Integer> getChoixHauteur(){
+        List<Integer> liste = new ArrayList<>();
 
-    public MParametres()
+        for (int i = GConstantes.HAUTEUR_MIN; i <= GConstantes.HAUTEUR_MAX; i++) {
+            liste.add(i);
+        }
 
-    public List<Integer> getChoixHauteur()
-    public List<Integer> getChoixLargeur()
-    public List<Integer> getChoixPourGagner()
+        return liste;
+    }
+    public List<Integer> getChoixLargeur(){
+        List<Integer> liste = new ArrayList<>();
 
-    public Integer getHauteur()
-    public Integer getLargeur()
-    public Integer getPourGagner()
+        for (int i = GConstantes.LARGEUR_MIN; i <= GConstantes.LARGEUR_MAX; i++) {
+            liste.add(i);
+        }
 
-    public void setHauteur(int hauteur)
-    public void setLargeur(int largeur)
-    public void setPourGagner(int pourGagner)
+        return liste;
+    }
 
-    private void genererListesDeChoix()
+    public List<Integer> getChoixPourGagner(){
+        List<Integer> liste = new ArrayList<>();
 
-    private List<Integer> genererListeChoix(int min, int max)
+        for (int i = GConstantes.GAGNER_MIN; i <= GConstantes.GAGNER_MAX; i++) {
+            liste.add(i);
+        }
 
-    private void genererListesDeChoixHauteur()
-    private void genererListesDeChoixLargeur()
-    private void genererListesDeChoixPourGagner()
+        return liste;
+    }
+
+    @Override
+    public void aPartirObjetJson(Map<String, Object> objetJson) {
+
+        for(Map.Entry<String, Object> entry : objetJson.entrySet()){
+            String cle = entry.getKey();
+            Object valeur = entry.getValue();
+            valeur = valeur.toString().substring(0, valeur.toString().indexOf("."));
+
+            if (cle.equals(__hauteur)){
+                hauteur = Integer.valueOf(valeur.toString());
+            } else if (cle.equals(__largeur)){
+                largeur = Integer.valueOf(valeur.toString());
+            } else if (cle.equals(__pourGagner)){
+                pourGagner = Integer.valueOf(valeur.toString());
+            }
+        }
+
+    }
+
+    @Override
+    public Map<String, Object> enObjetJson() {
+        Map<String, Object> json = new HashMap<>();
+
+        json.put(__hauteur, hauteur);
+        json.put(__largeur, largeur);
+        json.put(__pourGagner, pourGagner);
+
+        return json;
+    }
 
 }

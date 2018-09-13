@@ -1,29 +1,25 @@
 package ca.cours5b5.stevendesroches.serialisation;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.util.Map;
 
 
 public class Jsonification {
 
-    private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private static Gson gson = new Gson();
 
-    public static <T extends Serialisable> T aPartirJson(Class<T> classeAImplanter, String json){
-        return null;
+    public static Map<String, Object> enObjetJson(String json){
+
+
+        Map<String, Object> objetJson = gson.fromJson(json, Map.class);
+        return objetJson;
     }
 
-    public static String enJson(Serialisable obj){
-        return null;
-    }
+    public static String enChaine(Map<String, Object> objetJson){
 
-    private static <T extends Serialisable> T aPartirJson(Serialisable obj, String json){
-        return null;
-    }
-
-    private static <T extends Serialisable> T aPartirObjetJson(Serialisable obj, Map<String, Object> objetJson){
-        return null;
+        String chainJson = gson.toJson(objetJson);
+        return chainJson;
     }
 
 }

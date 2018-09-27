@@ -15,6 +15,18 @@ public class MParametres extends Modele {
     public static MParametres instance = new MParametres();
 
     @AttributSerialisable
+    public MParametresPartie parametresPartie;
+    private String __parametresPartie = "parametresPartie";
+
+    private List<Integer> choixHauteur;
+    private List<Integer> choixLargeur;
+    private List<Integer> choixPourGagner;
+
+    public MParametres(){
+
+    }
+
+    @AttributSerialisable
     public Integer hauteur = GConstantes.HAUTEUR_DEFAULT;;
     private final String __hauteur ="hauteur";
 
@@ -53,6 +65,28 @@ public class MParametres extends Modele {
         }
 
         return liste;
+    }
+
+    public MParametresPartie getParametresPartie(){
+        return null;
+    }
+
+    private void genererListesDeChoix(){}
+
+    private List<Integer> genererListeChoix(int min, int max){
+        return null;
+    }
+
+    private List<Integer> genererListeChoixHauteur(){
+        return null;
+    }
+
+    private List<Integer> genererListeChoixLargeur() {
+        return null;
+    }
+
+    private List<Integer> genererListeChoixPourGagner(){
+        return null;
     }
 
     @Override

@@ -20,12 +20,20 @@ public class MParametresPartie extends Modele{
 
     public static MParametresPartie aPartirMParametres(MParametres mParametres){
 
-        return null;
+        Modele mParam = mParametres;
+        MParametresPartie classe = (MParametresPartie) mParam;
+        return classe.cloner();
+
     }
 
     public MParametresPartie cloner(){
 
-        return null;
+        MParametresPartie clonage = new MParametresPartie();
+        clonage.setHauteur(this.hauteur);
+        clonage.setLargeur(this.largeur);
+        clonage.setPourGagner(this.pourGagner);
+
+        return clonage;
     }
 
     public MParametresPartie(){
@@ -33,15 +41,15 @@ public class MParametresPartie extends Modele{
     }
 
     public Integer getHauteur(){
-        return null;
+        return hauteur;
     }
 
     public Integer getLargeur(){
-        return null;
+        return largeur;
     }
 
     public Integer getPourGagner(){
-        return null;
+        return pourGagner;
     }
 
     public void setHauteur (int hauteur){

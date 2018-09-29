@@ -10,19 +10,17 @@ public class MPartie extends Modele {
     public MParametresPartie parametres;
     private final String __parametres = "parametres";
 
-    public MPartie(MParametresPartie parametres){}
+    public MPartie(MParametresPartie parametres){
+        this.parametres = parametres;
+    }
 
     public MParametresPartie getParametres() {
         return parametres;
     }
 
     @Override
-    public void aPartirObjetJson(Map<String, Object> objetJson) {
-
-    }
+    public void aPartirObjetJson(Map<String, Object> objetJson) {}
 
     @Override
-    public Map<String, Object> enObjetJson() {
-        return null;
-    }
+    public Map<String, Object> enObjetJson() { return null; }
 }

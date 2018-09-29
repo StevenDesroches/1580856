@@ -3,6 +3,9 @@ package ca.cours5b5.stevendesroches.vues;
 import android.content.Context;
 import android.util.AttributeSet;
 
+import ca.cours5b5.stevendesroches.controleurs.ControleurObservation;
+import ca.cours5b5.stevendesroches.controleurs.interfaces.ListenerObservateur;
+import ca.cours5b5.stevendesroches.modeles.MParametres;
 import ca.cours5b5.stevendesroches.modeles.MPartie;
 import ca.cours5b5.stevendesroches.modeles.Modele;
 
@@ -29,7 +32,9 @@ public class VPartie extends Vue {
 
     private void initialiser(){}
 
-    private void  observerPartie(){}
+    private void observerPartie(){
+
+    }
 
     private MPartie getPartie(Modele modele){
         return null;

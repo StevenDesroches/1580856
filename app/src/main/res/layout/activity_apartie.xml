@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ca.cours5b5.stevendesroches.vues.VPartie xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ca.cours5b5.stevendesroches.vues.VGrille
+        android:id="@+id/VGrille"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+    </ca.cours5b5.stevendesroches.vues.VGrille>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginTop="74dp"
+        android:text="Test"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/VGrille"
+        app:layout_constraintTop_toTopOf="@+id/VGrille"
+        tools:layout_editor_absoluteX="516dp"
+        tools:layout_editor_absoluteY="82dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="105dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteX="516dp"
+        tools:layout_editor_absoluteY="235dp" />
+</ca.cours5b5.stevendesroches.vues.VPartie>

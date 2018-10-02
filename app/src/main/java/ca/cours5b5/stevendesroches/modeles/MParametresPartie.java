@@ -19,10 +19,15 @@ public class MParametresPartie extends Modele{
     private final String __pourGagner ="pourGagner";
 
     public static MParametresPartie aPartirMParametres(MParametres mParametres){
+        MParametresPartie partie = new MParametresPartie();
+        partie.setHauteur(mParametres.parametresPartie.hauteur);
+        partie.setLargeur(mParametres.parametresPartie.largeur);
+        partie.setPourGagner(mParametres.parametresPartie.pourGagner);
 
-        Modele mParam = mParametres;
-        MParametresPartie classe = (MParametresPartie) mParam;
-        return classe.cloner();
+        //Modele mParam = mParametres;
+        //MParametresPartie classe = (MParametresPartie) mParam;
+
+        return partie.cloner();
 
     }
 

@@ -6,4 +6,5 @@
     <string name="textVLargeur">Largeur:</string>
     <string name="textVGagner">Pour gagner:</string>
     <string name="boutonParam">PARAMÈTRES</string>
+    <string name="boutonJouer">JOUER</string>
 </resources>

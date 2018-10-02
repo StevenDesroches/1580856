@@ -15,11 +15,19 @@ public class AMenuPrincipal extends Activite{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menuprincipal);
 
-        Button bouton = this.findViewById(R.id.buttonParam);
-        bouton.setOnClickListener(new View.OnClickListener() {
+        Button boutonParam = this.findViewById(R.id.buttonParam);
+        boutonParam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 accessParam();
+            }
+        });
+
+        Button boutonJouer = this.findViewById(R.id.buttonJouer);
+        boutonJouer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                accessJouer();
             }
         });
     }
@@ -30,6 +38,11 @@ public class AMenuPrincipal extends Activite{
 
     private void accessParam () {
         Intent monIntention = new Intent(this, AParametres.class);
+        this.startActivity(monIntention);
+    }
+
+    private void accessJouer () {
+        Intent monIntention = new Intent(this, APartie.class);
         this.startActivity(monIntention);
     }
 }

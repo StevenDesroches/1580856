@@ -15,7 +15,7 @@ public class MParametres extends Modele {
     public static MParametres instance = new MParametres();
 
     @AttributSerialisable
-    public MParametresPartie parametresPartie;
+    public MParametresPartie parametresPartie = new MParametresPartie();
     private String __parametresPartie = "parametresPartie";
 
     private List<Integer> choixHauteur;

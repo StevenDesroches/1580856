@@ -1,5 +1,7 @@
 package ca.cours5b5.stevendesroches.modeles;
 
+import android.util.Log;
+
 import java.util.Map;
 
 import ca.cours5b5.stevendesroches.serialisation.AttributSerialisable;
@@ -26,7 +28,7 @@ public class MParametresPartie extends Modele{
 
         //Modele mParam = mParametres;
         //MParametresPartie classe = (MParametresPartie) mParam;
-
+        Log.d("Atelier06", "::avant partie.cloner");
         return partie.cloner();
 
     }

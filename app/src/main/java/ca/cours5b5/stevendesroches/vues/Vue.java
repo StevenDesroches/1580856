@@ -5,6 +5,11 @@ import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.util.Log;
 
+import ca.cours5b5.stevendesroches.controleurs.ControleurObservation;
+import ca.cours5b5.stevendesroches.controleurs.interfaces.ListenerObservateur;
+import ca.cours5b5.stevendesroches.modeles.MParametres;
+import ca.cours5b5.stevendesroches.modeles.Modele;
+
 public abstract class Vue extends ConstraintLayout {
 
     protected Class metaDonnees = this.getClass();

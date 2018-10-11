@@ -22,5 +22,8 @@ public class VCase extends AppCompatButton {
         super(context);
     }
 
-    private void initialiser(){}
+    private void initialiser(){
+        this.setTooltipText("fdsf");
+        this.setText("fsdfsdf");
+    }
 }

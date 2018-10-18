@@ -19,13 +19,16 @@ public class ControleurObservation {
 
     public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur){
 
-        if (nomModele.equals(MParametres.instance.getClass().getSimpleName())){
+        if (nomModele.equals(MParametres.class.getSimpleName())){
+
             observations.put(MParametres.instance, listenerObservateur);
             listenerObservateur.reagirNouveauModele(MParametres.instance);
 
-        } else if (nomModele.equals(ControleurObservation.partie.getClass().getSimpleName())){
+        } else if (nomModele.equals(MPartie.class.getSimpleName())){
+            partie = new MPartie(MParametres.instance.getParametresPartie());
+
             observations.put(ControleurObservation.partie, listenerObservateur);
-            listenerObservateur.reagirNouveauModele(ControleurObservation.partie);
+            listenerObservateur.reagirNouveauModele(partie);
 
         }
 

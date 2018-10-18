@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.GridLayout;
 
 import ca.cours5b5.stevendesroches.R;
@@ -32,18 +33,19 @@ public class VPartie extends Vue {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        initialiserGrille();
+        grille = findViewById(R.id.Grille);
+        observerPartie();
     }
 
     private void initialiser(){}
 
     private void observerPartie(){
         Log.d("Atelier06",metaDonnees.getSimpleName() + "::Observation observerPartie");
-        ControleurObservation.observerModele(MParametres.class.getSimpleName(),
+        ControleurObservation.observerModele(MPartie.class.getSimpleName(),
                 new ListenerObservateur() {
                     @Override
                     public void reagirChangementAuModele(Modele modele) {
-                        initialiserGrille();
+                        initialiserGrille(getPartie(modele));
                     }
                 });
     }
@@ -53,17 +55,9 @@ public class VPartie extends Vue {
         return partie;
     }
 
-    private void initialiserGrille(){
+    private void initialiserGrille(MPartie partie){
         Log.d("Atelier06",metaDonnees.getSimpleName() + "::LAGRILLE");
-        //GridLayout grillee = findViewById(R.id.Grille);
-        findViewById(R.id.Grille).setBackgroundColor(Color.RED);
-        //grille = (VGrille) grillee;
-        //grille = findViewById(R.id.Grille);
-        grille.setBackgroundColor(Color.RED);
-        //findViewById(R.id.Grille).set
-
-        //grille.creerGrile(partie.parametres.hauteur, partie.parametres.largeur);
-        //grille.creerGrille(6, 8);
+        grille.creerGrille(partie.getParametres().getHauteur(), partie.getParametres().getLargeur());
 
     }
 

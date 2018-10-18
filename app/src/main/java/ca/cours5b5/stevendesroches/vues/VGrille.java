@@ -36,6 +36,8 @@ public class VGrille extends GridLayout {
 
     private List<VEntete> entetes;
 
+    private VCase[][] lesCases;
+
     @Override
     protected void onFinishInflate(){
         Log.d("Atelier06","::avant finishinflate");
@@ -49,61 +51,87 @@ public class VGrille extends GridLayout {
 
     void creerGrille(int hauteur, int largeur){
 
-        this.setBackgroundColor(Color.RED);
-        Spec rowSpan = GridLayout.spec(5, 1);
-        Spec colspan = GridLayout.spec(5, 1);
-        LayoutParams qwerty = new GridLayout.LayoutParams(rowSpan,colspan);
-
-        qwerty.width = 0;
-        qwerty.height = 0;
-        qwerty.setGravity(Gravity.FILL);
-
-        this.setLayoutParams(qwerty);
-
-        this.setBackgroundColor(Color.RED);
-
         Log.d("Atelier06","::Hey Creer Grille");
-
-        VCase cased = new VCase(this.getContext());
-        this.addView(cased, qwerty);
-        //this.addView(newButton, qwerty);
-        Log.d("Atelier06","::Hey Creer Grille");
-        //this.addView(newButton);
-        //this.setRowCount(5);
-        //this.setColumnCount(9);
-        //ajouterEnTetes(largeur);
-
-       // LayoutParams params = getMiseEnPageEntete(7);
-        //this.addView(newButton,params);
-
-
-
-        //this.addView(this, getMiseEnPageEntete(largeur));
-        //this.addView(this, getMiseEnPageCase(hauteur, largeur));
+        nombreRangees = hauteur - 1;
+        lesCases = new VCase[nombreRangees][largeur];
+        initialiserTableauDeCases(hauteur, largeur);
 
     }
 
-    private void initialiserColonnes(int largeur){}
+    private void initialiserTableauDeCases(int hauteur, int largeur){
+        initialiserColonnes(largeur);
+        ajouterEnTetes(largeur);
+        ajouterCases(hauteur, largeur);
+    }
+
+    private void initialiserColonnes(int largeur){
+        colonnesDeCases = new ArrayList<>();
+
+        for (int i = 0; i < largeur; i++){
+            colonnesDeCases.add(new Colonne());
+        }
+
+    }
 
     private void ajouterEnTetes(int largeur){
-        for (int i = 0; i< largeur; i++){
-            entetes.add(new VEntete(this.getContext(), i));
+
+        for (int i = 0; i < largeur; i++){
+            VEntete v = new VEntete(this.getContext(), i);
+            this.addView(v, getMiseEnPageEntete(i));
         }
     }
+
+
+    private void ajouterCases(int hauteur, int largeur){
+        for (int i = 1; i < hauteur; i++) {
+            for (int j = 0; j < largeur; j++) {
+                int h = hauteur - 1 - i;
+
+                VCase v = new VCase(this.getContext(), hauteur - 1 - i, j);
+                colonnesDeCases.get(j).add(0, v);
+                lesCases[i - 1][j] = v;
+                this.addView(v, getMiseEnPageCases(i, j));
+            }
+        }
+    }
+
+    private LayoutParams getMiseEnPageCases(int rangee, int colonne){
+            float poidsRangee = 1.0f;
+            float poidsCol = 1.0f;
+
+            Spec specRangee = GridLayout.spec(rangee, poidsRangee);
+            Spec specColonne = GridLayout.spec(colonne, poidsCol);
+
+            LayoutParams params = new LayoutParams(specRangee, specColonne);
+
+
+            params.width = 0;
+            params.height = 0;
+            params.setGravity(Gravity.FILL);
+            
+            params.rightMargin = 5;
+            params.leftMargin = 5;
+
+            return params;
+        }
 
     private LayoutParams getMiseEnPageEntete(int colonne){
-        LayoutParams Params = new LayoutParams();
-        Params.width = 0;
-        Params.height = 0;
-        Params.setGravity(Gravity.FILL);
-        for (VEntete entete : entetes){
-            entete.setLayoutParams(Params);
+            float poidsRangee = 2.0f;
+            float poidsCol = 1.0f;
+
+            Spec specRangee = GridLayout.spec(0, poidsRangee);
+            Spec specColonne = GridLayout.spec(colonne, poidsCol);
+
+            LayoutParams params = new LayoutParams(specRangee, specColonne);
+
+            params.width = 0;
+            params.height = 0;
+            params.setGravity(Gravity.FILL);
+
+            params.rightMargin = 5;
+            params.leftMargin = 5;
+
+            return params;
         }
-        return Params;
-    }
-
-    private void ajouterCases(int hauteur, int largeur){}
-
-    private LayoutParams getMiseEnPageCase(int rangee, int colonne){ return null; }
 
 }

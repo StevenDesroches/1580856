@@ -23,7 +23,7 @@ public class MParametres extends Modele {
     private List<Integer> choixPourGagner;
 
     public MParametres(){
-
+        genererListesDeChoix();
     }
 
     @AttributSerialisable
@@ -63,31 +63,34 @@ public class MParametres extends Modele {
         for (int i = GConstantes.GAGNER_MIN; i <= GConstantes.GAGNER_MAX; i++) {
             liste.add(i);
         }
-
         return liste;
     }
 
     public MParametresPartie getParametresPartie(){
-        return null;
+        return parametresPartie;
     }
 
-    private void genererListesDeChoix(){}
+    private void genererListesDeChoix(){
+        choixHauteur = genererListeChoixHauteur();
+        choixLargeur = genererListeChoixLargeur();
+        choixPourGagner = genererListeChoixPourGagner();
+    }
 
     private List<Integer> genererListeChoix(int min, int max){
-        return null;
+        List<Integer> liste = new ArrayList<>();
+
+        for(int i = min; i <= max; i++){
+            liste.add(i);
+        }
+
+        return liste;
     }
 
-    private List<Integer> genererListeChoixHauteur(){
-        return null;
-    }
+    private List<Integer> genererListeChoixHauteur(){return choixHauteur = genererListeChoix(GConstantes.HAUTEUR_MIN, GConstantes.HAUTEUR_MAX);}
 
-    private List<Integer> genererListeChoixLargeur() {
-        return null;
-    }
+    private List<Integer> genererListeChoixLargeur() {return choixHauteur = genererListeChoix(GConstantes.LARGEUR_MIN, GConstantes.LARGEUR_MAX);}
 
-    private List<Integer> genererListeChoixPourGagner(){
-        return null;
-    }
+    private List<Integer> genererListeChoixPourGagner(){return choixHauteur = genererListeChoix(GConstantes.GAGNER_MIN, GConstantes.GAGNER_MAX);}
 
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) {

@@ -4,20 +4,21 @@ import android.util.Log;
 
 import java.util.Map;
 
+import ca.cours5b5.stevendesroches.global.GConstantes;
 import ca.cours5b5.stevendesroches.serialisation.AttributSerialisable;
 
-public class MParametresPartie extends Modele{
+public class MParametresPartie extends Modele {
 
     @AttributSerialisable
-    public Integer hauteur;
+    public Integer hauteur = GConstantes.HAUTEUR_DEFAULT;
     private final String __hauteur ="hauteur";
 
     @AttributSerialisable
-    public Integer largeur;
+    public Integer largeur = GConstantes.LARGEUR_DEFAULT;
     private final String __largeur ="largeur";
 
     @AttributSerialisable
-    public Integer pourGagner;
+    public Integer pourGagner = GConstantes.GAGNER_DEFAULT;
     private final String __pourGagner ="pourGagner";
 
     public static MParametresPartie aPartirMParametres(MParametres mParametres){

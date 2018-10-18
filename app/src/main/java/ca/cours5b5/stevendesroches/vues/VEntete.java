@@ -23,12 +23,9 @@ public class VEntete extends AppCompatButton {
 
     public VEntete(Context context, int colonne){
         super(context);
-
         this.colonne = colonne;
-        this.setWidth(0);
-        this.setHeight(0);
-        this.setGravity(Gravity.FILL);
-        this.setText(colonne);
+
+        this.setText(colonne +"\n\u2193\n\u2193");
     }
 
 }

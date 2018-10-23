@@ -2,47 +2,71 @@ package ca.cours5b5.stevendesroches.activites;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 
 import ca.cours5b5.stevendesroches.R;
+import ca.cours5b5.stevendesroches.controleurs.ControleurAction;
+import ca.cours5b5.stevendesroches.controleurs.interfaces.Fournisseur;
+import ca.cours5b5.stevendesroches.controleurs.interfaces.ListenerFournisseur;
+import ca.cours5b5.stevendesroches.global.GCommande;
 
-public class AMenuPrincipal extends Activite{
+public class AMenuPrincipal extends Activite implements Fournisseur {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menuprincipal);
+        setContentView(R.layout.activity_menu_principal);
 
-        Button boutonParam = this.findViewById(R.id.buttonParam);
-        boutonParam.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                accessParam();
-            }
-        });
+        fournirActions();
 
-        Button boutonJouer = this.findViewById(R.id.buttonJouer);
-        boutonJouer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                accessJouer();
-            }
-        });
     }
 
-    static {
-        Log.d("Atelier04",AMenuPrincipal.class.getSimpleName() + "::static");
+    private void fournirActions() {
+
+        fournirActionOuvrirMenuParametres();
+
+        fournirActionDemarrerPartie();
     }
 
-    private void accessParam () {
-        Intent monIntention = new Intent(this, AParametres.class);
-        this.startActivity(monIntention);
+    private void fournirActionOuvrirMenuParametres() {
+
+        ControleurAction.fournirAction(this,
+                GCommande.OUVRIR_MENU_PARAMETRES,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+
+                        transitionParametres();
+
+                    }
+                });
     }
 
-    private void accessJouer () {
-        Intent monIntention = new Intent(this, APartie.class);
-        this.startActivity(monIntention);
+    private void fournirActionDemarrerPartie() {
+
+        ControleurAction.fournirAction(this,
+                GCommande.DEMARRER_PARTIE,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+
+                        transitionPartie();
+
+                    }
+                });
     }
+
+    private void transitionParametres(){
+
+        Intent intentionParametres = new Intent(this, AParametres.class);
+        startActivity(intentionParametres);
+
+    }
+
+    private void transitionPartie(){
+
+        Intent intentionParametres = new Intent(this, APartie.class);
+        startActivity(intentionParametres);
+
+    }
+
 }

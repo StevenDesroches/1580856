@@ -1,10 +1,23 @@
 <resources>
-    <string name="app_name">StevenDesroches</string>
-    <string name="IDENTIFIANT">1580856</string>
-    <string name="Greet">Bonjour!</string>
-    <string name="textVHauteur">Hauteur:</string>
-    <string name="textVLargeur">Largeur:</string>
-    <string name="textVGagner">Pour gagner:</string>
-    <string name="boutonParam">PARAMÈTRES</string>
-    <string name="boutonJouer">JOUER</string>
+
+    <string name="app_name" translatable="false">StevenDesroches</string>
+
+    <string name="bonjour">Bonjour!</string>
+
+    <string name="paysage">paysage</string>
+    <string name="portrait" translatable="false">portrait</string>
+
+    <string name="hauteur">Hauteur: </string>
+    <string name="largeur">Largeur: </string>
+    <string name="pour_gagner">Pour gagner: </string>
+
+    <string name="parametres">Parametres</string>
+
+    <string name="jouer">Jouer</string>
+
+    <string name="entete">↓\n↓</string>
+
+    <string name="joueur1">joueur1</string>
+    <string name="joueur2">joueur2</string>
+
 </resources>

@@ -1,13 +1,20 @@
 package ca.cours5b5.stevendesroches.global;
 
-public class GConstantes {
-    public static final int HAUTEUR_MIN = 4;
-    public static final int HAUTEUR_MAX = 10;
-    public static final int HAUTEUR_DEFAULT = 6;
+public final class GConstantes {
+
+    private GConstantes(){}
+
     public static final int LARGEUR_MIN = 4;
     public static final int LARGEUR_MAX = 10;
-    public static final int LARGEUR_DEFAULT = 7;
-    public static final int GAGNER_MIN = 3;
-    public static final int GAGNER_MAX = 4;
-    public static final int GAGNER_DEFAULT = 4;
+    public static final int LARGEUR_PAR_DEFAUT = 7;
+
+    public static final int HAUTEUR_MIN = 4;
+    public static final int HAUTEUR_MAX = 10;
+    public static final int HAUTEUR_PAR_DEFAUT = 6;
+
+    public static final int POUR_GAGNER_MIN = 3;
+    public static final int POUR_GAGNER_PAR_DEFAUT = 4;
+
+    public static final String EXTENSION_PAR_DEFAUT=".json";
+
 }

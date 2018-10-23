@@ -1,37 +1,48 @@
 package ca.cours5b5.stevendesroches.controleurs;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import ca.cours5b5.stevendesroches.controleurs.interfaces.ListenerObservateur;
-import ca.cours5b5.stevendesroches.modeles.MParametres;
-import ca.cours5b5.stevendesroches.modeles.MPartie;
 import ca.cours5b5.stevendesroches.modeles.Modele;
 
-public class ControleurObservation {
+public final class ControleurObservation {
+
+    private ControleurObservation(){}
 
     private static Map<Modele, ListenerObservateur> observations;
 
-    private static MPartie partie;
+    static {
 
-    static{
+        observations = new HashMap<>();
 
     }
 
-    public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur){
+    public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur) {
 
-        if (nomModele.equals(MParametres.class.getSimpleName())){
+        Modele modele = ControleurModeles.getModele(nomModele);
 
-            //observations.put(MParametres.instance, listenerObservateur);
-            listenerObservateur.reagirNouveauModele(MParametres.instance);
+        observations.put(modele, listenerObservateur);
 
-        } else if (nomModele.equals(MPartie.class.getSimpleName())){
-            partie = new MPartie(MParametres.instance.getParametresPartie());
+        listenerObservateur.reagirNouveauModele(modele);
 
-            //observations.put(ControleurObservation.partie, listenerObservateur);
-            listenerObservateur.reagirNouveauModele(partie);
+    }
+
+    public static void lancerObservation(Modele modele) {
+
+        final ListenerObservateur listenerObservateur = observations.get(modele);
+
+        if (listenerObservateur != null) {
+
+            listenerObservateur.reagirChangementAuModele(modele);
 
         }
+    }
 
+    public static void detruireObservation(Modele modele) {
+
+        observations.remove(modele);
 
     }
+
 }

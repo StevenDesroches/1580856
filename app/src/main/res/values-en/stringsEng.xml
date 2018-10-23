@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="Greet">Hello!</string>
-    <string name="textVHauteur">Height:</string>
-    <string name="textVLargeur">Width:</string>
-    <string name="textVGagner">To win:</string>
-    <string name="boutonParam">SETTINGS</string>
-    <string name="boutonJouer">PLAY</string>
-</resources>

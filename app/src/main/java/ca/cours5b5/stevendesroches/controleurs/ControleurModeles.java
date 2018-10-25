@@ -13,6 +13,7 @@ import ca.cours5b5.stevendesroches.modeles.MParametresPartie;
 import ca.cours5b5.stevendesroches.modeles.MPartie;
 import ca.cours5b5.stevendesroches.modeles.Modele;
 import ca.cours5b5.stevendesroches.donnees.Disque;
+import ca.cours5b5.stevendesroches.usagers.UsagerCourant;
 
 public final class ControleurModeles {
 
@@ -134,6 +135,11 @@ public final class ControleurModeles {
 
             }
         }
+    }
+
+    private static String getCheminSauvegarde(String nomModele){
+        String retour = ""+nomModele+"/"+ UsagerCourant.getId();
+        return retour;
     }
 
 }

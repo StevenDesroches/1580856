@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "390627304162",
+    "firebase_url": "https://connectfourth.firebaseio.com",
+    "project_id": "connectfourth",
+    "storage_bucket": "connectfourth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:390627304162:android:0350dedcce80c31f",
+        "android_client_info": {
+          "package_name": "ca.cours5b5.stevendesroches"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "390627304162-vdfj4o4vkfpn8jc886k91lbrcjg13rvf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ca.cours5b5.stevendesroches",
+            "certificate_hash": "2abdbff9b48f0684c430cbc27facc884d1205e49"
+          }
+        },
+        {
+          "client_id": "390627304162-cpkagms2ehqbjtu995m2c5go43oq52bg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASuKqIg9MS_Wn2yqT8C7toOyUdmaaFIKI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "390627304162-cpkagms2ehqbjtu995m2c5go43oq52bg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

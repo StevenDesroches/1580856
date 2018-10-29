@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import ca.cours5b5.stevendesroches.controleurs.interfaces.Fournisseur;
+import ca.cours5b5.stevendesroches.donnees.Serveur;
 import ca.cours5b5.stevendesroches.donnees.SourceDeDonnees;
 import ca.cours5b5.stevendesroches.exceptions.ErreurModele;
 import ca.cours5b5.stevendesroches.modeles.MParametres;
@@ -30,6 +31,7 @@ public final class ControleurModeles {
         modelesEnMemoire = new HashMap<>();
 
         listeDeSauvegardes = new ArrayList<>();
+        listeDeSauvegardes.add(Serveur.getInstance());
         listeDeSauvegardes.add(Disque.getInstance());
 
     }
@@ -46,9 +48,19 @@ public final class ControleurModeles {
 
         if(modele != null){
 
-            Map<String, Object> objetJson = modele.enObjetJson();
+            if(sourceDeDonnees == Serveur.getInstance()) {
 
-            sourceDeDonnees.sauvegarderModele(nomModele, objetJson);
+                Map<String, Object> objetJson = modele.enObjetJson();
+
+                sourceDeDonnees.sauvegarderModele(getCheminSauvegarde(nomModele), objetJson);
+
+            } else {
+
+                Map<String, Object> objetJson = modele.enObjetJson();
+
+                sourceDeDonnees.sauvegarderModele(nomModele, objetJson);
+
+            }
 
         }
     }

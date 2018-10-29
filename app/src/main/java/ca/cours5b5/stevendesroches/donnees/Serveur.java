@@ -1,5 +1,7 @@
 package ca.cours5b5.stevendesroches.donnees;
 
+import android.util.Log;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -13,12 +15,14 @@ public final class Serveur extends SourceDeDonnees {
 
     private static final Serveur instance = new Serveur();
 
-    private static Serveur getInstance(){
-        return null;
+    public static Serveur getInstance(){
+        return instance;
     }
 
     @Override
     public void sauvegarderModele(String cheminSauvegarde, Map<String, Object> objetJson) {
+
+        Log.d("atelier11", "Sauvegarde Serveur");
 
         DatabaseReference noeud = FirebaseDatabase.getInstance().getReference(cheminSauvegarde);
         noeud.setValue(objetJson);

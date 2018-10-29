@@ -114,9 +114,9 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if (requestCode == CODE_CONNEXION){
             if (resultCode == RESULT_OK) {
-                Log.d("Atelier11", this.getClass().getSimpleName() + "::Connexion REUSSI");
+                Log.d("atelier11", this.getClass().getSimpleName() + "::Connexion REUSSI");
             } else {
-                Log.d("Atelier11", this.getClass().getSimpleName() + "::Connexion FAIL");
+                Log.d("atelier11", this.getClass().getSimpleName() + "::Connexion FAIL");
             }
         }
     }

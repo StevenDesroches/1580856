@@ -7,7 +7,6 @@ public class UsagerCourant {
     public static boolean siUsagerConnecte(){
 
         boolean result = false;
-        FirebaseAuth.getInstance().getCurrentUser();
 
         if (FirebaseAuth.getInstance().getCurrentUser() != null){
             result = true;

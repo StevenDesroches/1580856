@@ -2,10 +2,13 @@ package ca.cours5b5.stevendesroches.activites;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.View;
 
 import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +39,8 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
         fournirActionDemarrerPartie();
 
         fournirActionConnexion();
+
+        fournirActionDeco();
     }
 
     private void fournirActionOuvrirMenuParametres() {
@@ -75,7 +80,19 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
                     public void executer(Object... args) {
 
                         transitionConnexion();
+                    }
+                });
+    }
 
+    private void fournirActionDeco() {
+
+        ControleurAction.fournirAction(this,
+                GCommande.DECONNEXION,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+
+                        transitionDeconnexion();
                     }
                 });
     }
@@ -110,11 +127,27 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
         this.startActivityForResult(intentionConnexion, CODE_CONNEXION);
     }
 
+    private void transitionDeconnexion(){
+
+     AuthUI.getInstance().signOut(this).addOnCompleteListener(new OnCompleteListener<Void>() {
+         @Override
+         public void onComplete(@NonNull Task<Void> task) {
+             Log.d("atelier11", this.getClass().getSimpleName() + "::Déconnexsion REUSSI");
+             findViewById(R.id.bouton_connexion).setVisibility(View.VISIBLE);
+             findViewById(R.id.bouton_deco).setVisibility(View.INVISIBLE);
+         }
+     });
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if (requestCode == CODE_CONNEXION){
             if (resultCode == RESULT_OK) {
                 Log.d("atelier11", this.getClass().getSimpleName() + "::Connexion REUSSI");
+                findViewById(R.id.bouton_connexion).setVisibility(View.INVISIBLE);
+                findViewById(R.id.bouton_deco).setVisibility(View.VISIBLE);
+
             } else {
                 Log.d("atelier11", this.getClass().getSimpleName() + "::Connexion FAIL");
             }

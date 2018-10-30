@@ -22,4 +22,8 @@
 
     <string name="connect">Connexion</string>
 
+    <string name="deco">Déconnexion</string>
+
+    <string name="effacerPartie">Effacer partie courante</string>
+
 </resources>

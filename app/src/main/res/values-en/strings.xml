@@ -17,5 +17,8 @@
     <string name="joueur2">player2</string>
 
     <string name="connect">Connection</string>
+    <string name="deco">Disconnection</string>
+
+    <string name="effacerPartie">Clear current game</string>
 
 </resources>

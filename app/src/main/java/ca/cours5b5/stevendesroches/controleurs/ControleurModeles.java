@@ -149,6 +149,16 @@ public final class ControleurModeles {
         }
     }
 
+    public static void detruireSauvegarde(String nomModele) {
+
+        //for(SourceDeDonnees source : listeDeSauvegardes){
+        //    source.detruireSauvegarde();
+        //}
+
+        Serveur.getInstance().detruireSauvegarde(getCheminSauvegarde(nomModele));
+
+    }
+
     private static String getCheminSauvegarde(String nomModele){
         String retour = ""+nomModele+"/"+ UsagerCourant.getId();
         return retour;

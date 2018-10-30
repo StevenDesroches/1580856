@@ -9,6 +9,7 @@ import ca.cours5b5.stevendesroches.R;
 import ca.cours5b5.stevendesroches.controleurs.Action;
 import ca.cours5b5.stevendesroches.controleurs.ControleurAction;
 import ca.cours5b5.stevendesroches.global.GCommande;
+import ca.cours5b5.stevendesroches.usagers.UsagerCourant;
 
 
 public class VMenuPrincipal extends Vue {
@@ -21,6 +22,9 @@ public class VMenuPrincipal extends Vue {
 
     private Button boutonConnexion;
     private Action actionConnexion;
+
+    private Button boutonDeco;
+    private Action actionDeco;
 
     public VMenuPrincipal(Context context) {
         super(context);
@@ -40,10 +44,19 @@ public class VMenuPrincipal extends Vue {
 
         recupererControles();
 
+        initialiser();
+
         demanderActions();
 
         installerListeners();
 
+    }
+
+    private void initialiser(){
+        if(UsagerCourant.siUsagerConnecte()){
+            boutonConnexion.setVisibility(View.INVISIBLE);
+            boutonDeco.setVisibility(View.VISIBLE);
+        }
     }
 
 
@@ -55,6 +68,8 @@ public class VMenuPrincipal extends Vue {
 
         boutonConnexion = findViewById(R.id.bouton_connexion);
 
+        boutonDeco = findViewById(R.id.bouton_deco);
+
     }
 
     private void demanderActions() {
@@ -64,6 +79,8 @@ public class VMenuPrincipal extends Vue {
         actionPartie = ControleurAction.demanderAction(GCommande.DEMARRER_PARTIE);
 
         actionConnexion = ControleurAction.demanderAction(GCommande.CONNEXION);
+
+        actionDeco = ControleurAction.demanderAction(GCommande.DECONNEXION);
 
     }
 
@@ -75,6 +92,8 @@ public class VMenuPrincipal extends Vue {
         installerListenerPartie();
 
         installerListenerConnexion();
+
+        installerListenerDeco();
 
     }
 
@@ -106,6 +125,17 @@ public class VMenuPrincipal extends Vue {
             @Override
             public void onClick(View view) {
                 actionConnexion.executerDesQuePossible();
+            }
+        });
+
+    }
+
+    private void installerListenerDeco() {
+
+        boutonDeco.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actionDeco.executerDesQuePossible();
             }
         });
 

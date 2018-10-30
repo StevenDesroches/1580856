@@ -31,6 +31,9 @@ public class VParametres extends Vue {
     private Action actionHauteur;
     private Action actionLargeur;
     private Action actionPourGagner;
+    private Action actionEffacer;
+
+    private Button boutonEffacer;
 
     public VParametres(Context context) {
         super(context);
@@ -68,6 +71,8 @@ public class VParametres extends Vue {
         initialiserSpinner(spinnerLargeur);
         initialiserSpinner(spinnerPourGagner);
 
+        boutonEffacer = findViewById(R.id.bouton_effacerPartie);
+
     }
 
     private void demanderActions() {
@@ -75,6 +80,7 @@ public class VParametres extends Vue {
         actionHauteur = ControleurAction.demanderAction(GCommande.CHOISIR_HAUTEUR);
         actionLargeur = ControleurAction.demanderAction(GCommande.CHOISIR_LARGEUR);
         actionPourGagner = ControleurAction.demanderAction(GCommande.CHOISIR_POUR_GAGNER);
+        actionEffacer = ControleurAction.demanderAction(GCommande.EFFACER_PARTIE);
 
     }
 
@@ -91,8 +97,21 @@ public class VParametres extends Vue {
         installerListenerHauteur();
         installerListenerLargeur();
         installerListenerPourGagner();
+        installerListenerEffacer();
 
     }
+
+    private void installerListenerEffacer() {
+
+        boutonEffacer.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actionEffacer.executerDesQuePossible();
+            }
+        });
+
+    }
+
 
     private void installerListenerHauteur(){
 

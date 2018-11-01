@@ -1,8 +1,11 @@
 package ca.cours5b5.stevendesroches.controleurs;
 
+import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 
+import ca.cours5b5.stevendesroches.controleurs.interfaces.ListenerGetModele;
 import ca.cours5b5.stevendesroches.controleurs.interfaces.ListenerObservateur;
 import ca.cours5b5.stevendesroches.modeles.Modele;
 
@@ -18,13 +21,26 @@ public final class ControleurObservation {
 
     }
 
-    public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur) {
+    /*public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur) {
 
         Modele modele = ControleurModeles.getModele(nomModele);
 
         observations.put(modele, listenerObservateur);
 
         listenerObservateur.reagirNouveauModele(modele);
+
+    }*/
+
+    public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur) {
+        Log.d("atelier12", ControleurModeles.class.getSimpleName() + "::observerModele");
+        ControleurModeles.getModele(nomModele, new ListenerGetModele() {
+            @Override
+            public void reagirAuModele(Modele modele) {
+                Log.d("atelier12", ControleurModeles.class.getSimpleName() + "::ReagirAuModele");
+                observations.put(modele, listenerObservateur);
+                listenerObservateur.reagirNouveauModele(modele);
+            }
+        });
 
     }
 

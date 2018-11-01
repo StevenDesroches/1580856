@@ -79,6 +79,33 @@ public final class Disque extends SourceDeDonnees {
         }
     }
 
+    @Override
+    public void chargerModele(String cheminSauvegarde, ListenerChargement listenerChargement) {
+
+        //TODO verifier que le nom du fichier est de la forme nomModele.json
+        File fichier = getFichier(cheminSauvegarde);
+
+        try {
+
+            String json = new String(Files.readAllBytes(fichier.toPath()));
+
+            Map<String, Object> objetJson = Jsonification.aPartirChaineJson(json);
+            Log.d("atelier12", "chargement de la sauvegarde disque");
+            listenerChargement.reagirSucces(objetJson);
+
+        } catch (FileNotFoundException e) {
+            Log.d("atelier12", "non-chargement de la sauvegarde disque");
+
+            listenerChargement.reagirErreur(e);
+
+        } catch (IOException e) {
+            Log.d("atelier12", "non-chargement de la sauvegarde disque");
+
+            listenerChargement.reagirErreur(e);
+
+        }
+    }
+
 
     private File getFichier(String cheminSauvegarde) {
 

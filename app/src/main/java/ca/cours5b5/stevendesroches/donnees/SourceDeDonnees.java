@@ -9,6 +9,8 @@ public abstract class SourceDeDonnees {
 
     public abstract void sauvegarderModele(final String cheminSauvegarde, final Map<String, Object> objetJson);
 
+    public abstract void chargerModele(final String cheminSauvegarde, final ListenerChargement listenerChargement);
+
     protected static String getNomModele(String cheminSauvegarde){
         String[] cheminSplit = cheminSauvegarde.split("/");
         String nomModele = cheminSplit[0];

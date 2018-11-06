@@ -18,4 +18,7 @@ public enum GCommande {
 
     EFFACER_PARTIE,
 
+    JOINDRE_OU_CREER_PARTIE_RESEAU,
+    RECEVOIR_COUP_RESEAU,
+
 }

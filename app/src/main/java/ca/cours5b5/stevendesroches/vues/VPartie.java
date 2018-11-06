@@ -46,7 +46,6 @@ public class VPartie extends Vue {
     }
 
     private void observerPartie() {
-
         ControleurObservation.observerModele(MPartie.class.getSimpleName(),
                 new ListenerObservateur() {
                     @Override

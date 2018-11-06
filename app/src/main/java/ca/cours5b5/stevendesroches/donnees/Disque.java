@@ -11,6 +11,8 @@ import java.nio.file.Files;
 import java.util.Map;
 
 import ca.cours5b5.stevendesroches.global.GConstantes;
+import ca.cours5b5.stevendesroches.modeles.MParametres;
+import ca.cours5b5.stevendesroches.modeles.MPartie;
 import ca.cours5b5.stevendesroches.serialisation.Jsonification;
 
 public final class Disque extends SourceDeDonnees {
@@ -58,52 +60,61 @@ public final class Disque extends SourceDeDonnees {
     @Override
     public void sauvegarderModele(String cheminSauvegarde, Map<String, Object> objetJson) {
 
-        File fichier = getFichier(cheminSauvegarde);
+        if (checkNomModele(cheminSauvegarde)) { //verifier que le nom du fichier est de la forme nomModele.json
 
-        String json = Jsonification.enChaineJson(objetJson);
+            File fichier = getFichier(cheminSauvegarde);
 
-        try {
+            String json = Jsonification.enChaineJson(objetJson);
 
-            OutputStream outputStream = new FileOutputStream(fichier);
+            try {
 
-            outputStream.write(json.getBytes());
+                OutputStream outputStream = new FileOutputStream(fichier);
 
-        } catch (FileNotFoundException e) {
+                outputStream.write(json.getBytes());
 
-            Log.d("Atelier07", "File not found: " + cheminSauvegarde);
+            } catch (FileNotFoundException e) {
 
-        } catch (IOException e) {
+                Log.d("Atelier07", "File not found: " + cheminSauvegarde);
 
-            Log.d("Atelier07", "IOException: " + cheminSauvegarde);
+            } catch (IOException e) {
+
+                Log.d("Atelier07", "IOException: " + cheminSauvegarde);
+
+            }
 
         }
+
     }
 
     @Override
     public void chargerModele(String cheminSauvegarde, ListenerChargement listenerChargement) {
 
-        //TODO verifier que le nom du fichier est de la forme nomModele.json
-        File fichier = getFichier(cheminSauvegarde);
+        if (checkNomModele(cheminSauvegarde)){ //verifier que le nom du fichier est de la forme nomModele.json
 
-        try {
+            File fichier = getFichier(cheminSauvegarde);
 
-            String json = new String(Files.readAllBytes(fichier.toPath()));
+            try {
 
-            Map<String, Object> objetJson = Jsonification.aPartirChaineJson(json);
-            Log.d("atelier12", "chargement de la sauvegarde disque");
-            listenerChargement.reagirSucces(objetJson);
+                String json = new String(Files.readAllBytes(fichier.toPath()));
 
-        } catch (FileNotFoundException e) {
-            Log.d("atelier12", "non-chargement de la sauvegarde disque");
+                Map<String, Object> objetJson = Jsonification.aPartirChaineJson(json);
+                Log.d("atelier12", "chargement de la sauvegarde disque");
+                listenerChargement.reagirSucces(objetJson);
 
-            listenerChargement.reagirErreur(e);
+            } catch (FileNotFoundException e) {
+                Log.d("atelier12", "non-chargement de la sauvegarde disque");
 
-        } catch (IOException e) {
-            Log.d("atelier12", "non-chargement de la sauvegarde disque");
+                listenerChargement.reagirErreur(e);
 
-            listenerChargement.reagirErreur(e);
+            } catch (IOException e) {
+                Log.d("atelier12", "non-chargement de la sauvegarde disque");
+
+                listenerChargement.reagirErreur(e);
+
+            }
 
         }
+
     }
 
     @Override
@@ -132,6 +143,31 @@ public final class Disque extends SourceDeDonnees {
 
         return nomModele + GConstantes.EXTENSION_PAR_DEFAUT;
 
+    }
+
+    private Boolean checkNomModele(String cheminSauvegarde){
+        boolean retour = true;
+
+        Log.d("atelier12", this.getClass().getSimpleName() + "::checkNomModele = "+ cheminSauvegarde);
+        if(!cheminSauvegarde.contains("/")){
+            retour = false;
+        } else {
+
+            String[] cheminSplit = cheminSauvegarde.split(".");
+            String nomModele = cheminSplit[0];
+            String extension = cheminSplit[1];
+
+            if (nomModele.equals(MPartie.class.getSimpleName()) || nomModele.equals(MParametres.class.getSimpleName())){
+            } else if (!extension.equals(GConstantes.EXTENSION_PAR_DEFAUT)){
+                retour = false;
+            } else {
+                retour = false;
+            }
+
+        }
+
+        Log.d("atelier12", this.getClass().getSimpleName() + "::checkNomModele = "+ retour);
+        return retour;
     }
 
 }

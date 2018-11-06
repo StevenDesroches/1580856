@@ -160,10 +160,6 @@ public final class ControleurModeles {
             detruireModele(nomModele);
         }
 
-
-        //Serveur.getInstance().detruireSauvegarde(getCheminSauvegarde(nomModele));
-        //modelesEnMemoire.remove(nomModele);
-
     }
 
     private static String getCheminSauvegarde(String nomModele){
@@ -240,7 +236,7 @@ public final class ControleurModeles {
 
         chargerDonnees(modele, nomModele, listenerGetModele);
         //modelesEnMemoire.put()
-     //memoriser le modele en memoire
+        //memoriser le modele en memoire
     }
 
     private static void chargerDonnees(Modele modele, String nomModele, ListenerGetModele listenerGetModele) {

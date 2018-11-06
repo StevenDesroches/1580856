@@ -36,31 +36,37 @@ public final class Disque extends SourceDeDonnees {
     @Override
     public Map<String, Object> chargerModele(String cheminSauvegarde) {
 
-        File fichier = getFichier(cheminSauvegarde);
+        if (checkNomModele(getNomFichier(cheminSauvegarde))) { //verifier que le nom du fichier est de la forme nomModele.json
+            File fichier = getFichier(cheminSauvegarde);
 
-        try {
+            try {
 
-            String json = new String(Files.readAllBytes(fichier.toPath()));
+                String json = new String(Files.readAllBytes(fichier.toPath()));
 
-            Map<String, Object> objetJson = Jsonification.aPartirChaineJson(json);
+                Map<String, Object> objetJson = Jsonification.aPartirChaineJson(json);
 
-            return objetJson;
+                return objetJson;
 
-        } catch (FileNotFoundException e) {
+            } catch (FileNotFoundException e) {
 
+                return null;
+
+            } catch (IOException e) {
+
+                return null;
+
+            }
+
+        } else {
             return null;
-
-        } catch (IOException e) {
-
-            return null;
-
         }
+
     }
 
     @Override
     public void sauvegarderModele(String cheminSauvegarde, Map<String, Object> objetJson) {
 
-        if (checkNomModele(cheminSauvegarde)) { //verifier que le nom du fichier est de la forme nomModele.json
+        if (checkNomModele(getNomFichier(cheminSauvegarde))) { //verifier que le nom du fichier est de la forme nomModele.json
 
             File fichier = getFichier(cheminSauvegarde);
 
@@ -89,7 +95,7 @@ public final class Disque extends SourceDeDonnees {
     @Override
     public void chargerModele(String cheminSauvegarde, ListenerChargement listenerChargement) {
 
-        if (checkNomModele(cheminSauvegarde)){ //verifier que le nom du fichier est de la forme nomModele.json
+        if (checkNomModele(getNomFichier(cheminSauvegarde))){ //verifier que le nom du fichier est de la forme nomModele.json
 
             File fichier = getFichier(cheminSauvegarde);
 
@@ -139,7 +145,10 @@ public final class Disque extends SourceDeDonnees {
 
     }
 
-    private String getNomFichier(String nomModele) {
+    private String getNomFichier(String cheminSauvegarde) {
+
+        String[] cheminSplit = cheminSauvegarde.split("/");
+        String nomModele = cheminSplit[0];
 
         return nomModele + GConstantes.EXTENSION_PAR_DEFAUT;
 
@@ -149,11 +158,11 @@ public final class Disque extends SourceDeDonnees {
         boolean retour = true;
 
         Log.d("atelier12", this.getClass().getSimpleName() + "::checkNomModele = "+ cheminSauvegarde);
-        if(!cheminSauvegarde.contains("/")){
+        if(cheminSauvegarde.contains("/")){
             retour = false;
         } else {
 
-            String[] cheminSplit = cheminSauvegarde.split(".");
+            String[] cheminSplit = cheminSauvegarde.split("\\.");
             String nomModele = cheminSplit[0];
             String extension = cheminSplit[1];
 

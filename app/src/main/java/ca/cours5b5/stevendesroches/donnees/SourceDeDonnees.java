@@ -11,6 +11,8 @@ public abstract class SourceDeDonnees {
 
     public abstract void chargerModele(final String cheminSauvegarde, final ListenerChargement listenerChargement);
 
+    public abstract void detruireSauvegarde(final String cheminSauvegarde);
+
     protected static String getNomModele(String cheminSauvegarde){
         String[] cheminSplit = cheminSauvegarde.split("/");
         String nomModele = cheminSplit[0];

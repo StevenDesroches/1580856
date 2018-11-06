@@ -106,6 +106,19 @@ public final class Disque extends SourceDeDonnees {
         }
     }
 
+    @Override
+    public void detruireSauvegarde(String cheminSauvegarde) {
+        File fichier = getFichier(cheminSauvegarde);
+
+        if(fichier.exists()) {
+            fichier.delete();
+            Log.d("atelier60", "Destruction du fichier de sauvegarde");
+        } else {
+            Log.d("atelier60", "Non-Destruction du fichier de sauvegarde");
+        }
+
+    }
+
 
     private File getFichier(String cheminSauvegarde) {
 

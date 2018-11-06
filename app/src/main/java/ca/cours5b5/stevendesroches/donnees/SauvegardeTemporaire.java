@@ -48,6 +48,8 @@ public class SauvegardeTemporaire extends SourceDeDonnees {
     public void chargerModele(String cheminSauvegarde, ListenerChargement listenerChargement) {
 
         //TODO verifier que la clé est sous forme nomModele
+
+
         
         if(bundle != null && bundle.containsKey(getCle(cheminSauvegarde))){
             Log.d("atelier12", "chargement de la sauvegardeTemporaire");
@@ -63,6 +65,16 @@ public class SauvegardeTemporaire extends SourceDeDonnees {
 
         }
 
+    }
+
+    @Override
+    public void detruireSauvegarde(String cheminSauvegarde) {
+        if(bundle != null && bundle.containsKey(getCle(cheminSauvegarde))){
+            bundle.clear();
+            Log.d("atelier60", "Destruction de la sauvegarde temporaire");
+        }else{
+            Log.d("atelier60", "non-Destruction de la sauvegarde temporaire");
+        }
     }
 
     private String getCle(String cheminSauvegarde){ return getNomModele(cheminSauvegarde); }

@@ -76,6 +76,7 @@ public final class Serveur extends SourceDeDonnees {
         /*
         BONUS
          */
+        Log.d("atelier60", "Destruction de la sauvegarde serveur");
         DatabaseReference noeud = FirebaseDatabase.getInstance().getReference(cheminSauvegarde);
         noeud.removeValue();
 

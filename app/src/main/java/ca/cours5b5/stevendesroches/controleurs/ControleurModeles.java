@@ -10,6 +10,7 @@ import java.util.Map;
 import ca.cours5b5.stevendesroches.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.stevendesroches.controleurs.interfaces.ListenerGetModele;
 import ca.cours5b5.stevendesroches.donnees.ListenerChargement;
+import ca.cours5b5.stevendesroches.donnees.SauvegardeTemporaire;
 import ca.cours5b5.stevendesroches.donnees.Serveur;
 import ca.cours5b5.stevendesroches.donnees.SourceDeDonnees;
 import ca.cours5b5.stevendesroches.exceptions.ErreurModele;
@@ -154,12 +155,14 @@ public final class ControleurModeles {
 
     public static void detruireSauvegarde(String nomModele) {
 
-        //for(SourceDeDonnees source : listeDeSauvegardes){
-        //    source.detruireSauvegarde();
-        //}
+        for(SourceDeDonnees source : listeDeSauvegardes){
+            source.detruireSauvegarde(getCheminSauvegarde(nomModele));
+            detruireModele(nomModele);
+        }
 
-        Serveur.getInstance().detruireSauvegarde(getCheminSauvegarde(nomModele));
-        modelesEnMemoire.remove(nomModele);
+
+        //Serveur.getInstance().detruireSauvegarde(getCheminSauvegarde(nomModele));
+        //modelesEnMemoire.remove(nomModele);
 
     }
 
@@ -247,7 +250,7 @@ public final class ControleurModeles {
 
     private static void chargementViaSequence(final Modele modele, String cheminDeSauvegarde, ListenerGetModele listenerGetModele, int indiceSourceCourante){
         Log.d("atelier12", ControleurModeles.class.getSimpleName() + "::chargementViaSequence");
-        if (sequenceDeChargement.length < indiceSourceCourante){
+        if (sequenceDeChargement.length <= indiceSourceCourante){
           terminerChargement(modele, listenerGetModele);
 
         } else {

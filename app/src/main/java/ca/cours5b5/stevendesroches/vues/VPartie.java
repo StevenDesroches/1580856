@@ -98,4 +98,8 @@ public class VPartie extends Vue {
 
     }
 
+    protected String getNomModele(){
+        return null;
+    }
+
 }

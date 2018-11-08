@@ -55,7 +55,7 @@ public class MPartie extends Modele implements Fournisseur {
     }
 
 
-    private void fournirActionPlacerJeton() {
+    private void fournirActionPlacerJeton(){
 
         ControleurAction.fournirAction(this,
                 GCommande.JOUER_COUP_ICI,

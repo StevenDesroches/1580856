@@ -18,6 +18,7 @@ import ca.cours5b5.stevendesroches.controleurs.ControleurAction;
 import ca.cours5b5.stevendesroches.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.stevendesroches.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.stevendesroches.global.GCommande;
+import ca.cours5b5.stevendesroches.global.GConstantes;
 
 public class AMenuPrincipal extends Activite implements Fournisseur {
 
@@ -97,6 +98,19 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
                 });
     }
 
+    private void fournirActionJoindreOuCreerPartieReseau() {
+
+        ControleurAction.fournirAction(this,
+                GCommande.JOINDRE_OU_CREER_PARTIE_RESEAU,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+
+                        transitionPartieReseau();
+                    }
+                });
+    }
+
 
     private void transitionParametres(){
 
@@ -137,6 +151,14 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
              findViewById(R.id.bouton_deco).setVisibility(View.INVISIBLE);
          }
      });
+
+    }
+
+    private void transitionPartieReseau(){
+
+        Intent intentionPartieReseau = new Intent(this, APartieReseau.class);
+        intentionPartieReseau.putExtra("FIXME", GConstantes.FIXME_JSON_PARTIE_RESEAU);
+        startActivity(intentionPartieReseau);
 
     }
 

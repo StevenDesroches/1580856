@@ -164,6 +164,7 @@ public final class ControleurModeles {
 
     private static String getCheminSauvegarde(String nomModele){
         String retour = ""+nomModele+"/"+ UsagerCourant.getId();
+        //TODO si le modèle est identifiable (voir interface identifiable) retourner est nommodele/idmodele
         return retour;
     }
 

@@ -1,6 +1,7 @@
 package ca.cours5b5.stevendesroches.activites;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import ca.cours5b5.stevendesroches.R;
 import ca.cours5b5.stevendesroches.controleurs.ControleurAction;

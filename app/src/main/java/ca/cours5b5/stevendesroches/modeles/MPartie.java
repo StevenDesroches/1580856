@@ -81,7 +81,7 @@ public class MPartie extends Modele implements Fournisseur {
     }
 
     protected void jouerCoup(int colonne) {
-
+        //TODO verifier si la partie est gagnée
         if(siCoupLegal(colonne)){
 
             listeCoups.add(colonne);

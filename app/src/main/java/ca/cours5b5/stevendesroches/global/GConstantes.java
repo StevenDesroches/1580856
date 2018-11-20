@@ -19,13 +19,12 @@ public final class GConstantes {
 
     public  static final int NOMBRE_DE_VALEURS_A_CHARGER_DU_SERVEUR_PAR_DEFAUT = 10;
 
-    public static final String CLE_ID_JOUEUR_HOTE = "idJoueurHote";
-    public static final String CLE_IF_JOUEUR_INVITE = "idJoueurInvite";
+    public static final String CLE_ID_JOUEUR_HOTE = "O1HO8NKYErfpjRFE994SMFsXs043";
+    public static final String CLE_ID_JOUEUR_INVITE = "3HKVgLdDM4NxRhQ68mXiYkNAod63";
 
     public static final String CLE_COUPS_JOUEUR_HOTE = "coupsJoueurHote";
     public static final String CLE_COUPS_JOUEUR_INVITE = "coupsJoueurInvite";
 
-    // TODO: remplacer les ids par ceux de vos 2 usagers de test
-    public static final String FIXME_JSON_PARTIE_RESEAU = "{\"listeCoups\":[],\"parametres\":{\"largeur\":\"7\",\"pourGagner\":\"4\",\"hauteur\":\"6\"},\"idJoueurInvite\":\"SDFGHJ\",\"idJoueurHote\":\"fgh\"}";
+    public static final String FIXME_JSON_PARTIE_RESEAU = "{\"listeCoups\":[],\"parametres\":{\"largeur\":\"7\",\"pourGagner\":\"4\",\"hauteur\":\"6\"},\"idJoueurInvite\":\"3HKVgLdDM4NxRhQ68mXiYkNAod63\",\"idJoueurHote\":\"O1HO8NKYErfpjRFE994SMFsXs043\"}";
 
 }

@@ -2,6 +2,9 @@ package ca.cours5b5.stevendesroches.vues;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
+
+import ca.cours5b5.stevendesroches.modeles.MPartieReseau;
 
 public class VPartieReseau extends VPartie{
 
@@ -18,5 +21,7 @@ public class VPartieReseau extends VPartie{
     }
 
     @Override
-    protected String getNomModele(){return null;}
+    protected String getNomModele(){
+        Log.d("TEST13", this.getClass().getSimpleName() + "::getNomModele()" +MPartieReseau.class.getSimpleName());
+        return MPartieReseau.class.getSimpleName();}
 }

@@ -26,4 +26,6 @@
 
     <string name="effacerPartie">Effacer partie courante</string>
 
+    <string name="jouerReseau">Jouer En-Ligne</string>
+
 </resources>

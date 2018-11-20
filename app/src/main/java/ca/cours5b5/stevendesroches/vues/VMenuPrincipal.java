@@ -26,6 +26,9 @@ public class VMenuPrincipal extends Vue {
     private Button boutonDeco;
     private Action actionDeco;
 
+    private Button boutonPartieReseau;
+    private Action actionPartieReseau;
+
     public VMenuPrincipal(Context context) {
         super(context);
     }
@@ -70,6 +73,8 @@ public class VMenuPrincipal extends Vue {
 
         boutonDeco = findViewById(R.id.bouton_deco);
 
+        boutonPartieReseau = findViewById(R.id.bouton_partieReseau);
+
     }
 
     private void demanderActions() {
@@ -81,6 +86,8 @@ public class VMenuPrincipal extends Vue {
         actionConnexion = ControleurAction.demanderAction(GCommande.CONNEXION);
 
         actionDeco = ControleurAction.demanderAction(GCommande.DECONNEXION);
+
+        actionPartieReseau = ControleurAction.demanderAction(GCommande.JOINDRE_OU_CREER_PARTIE_RESEAU);
 
     }
 
@@ -94,6 +101,8 @@ public class VMenuPrincipal extends Vue {
         installerListenerConnexion();
 
         installerListenerDeco();
+
+        installerListenerPartieReseau();
 
     }
 
@@ -136,6 +145,17 @@ public class VMenuPrincipal extends Vue {
             @Override
             public void onClick(View view) {
                 actionDeco.executerDesQuePossible();
+            }
+        });
+
+    }
+
+    private void installerListenerPartieReseau() {
+
+        boutonPartieReseau.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actionPartieReseau.executerDesQuePossible();
             }
         });
 

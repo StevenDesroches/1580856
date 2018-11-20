@@ -21,4 +21,6 @@
 
     <string name="effacerPartie">Clear current game</string>
 
+    <string name="jouerReseau">Play Online</string>
+
 </resources>

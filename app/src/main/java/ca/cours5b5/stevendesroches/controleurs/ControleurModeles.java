@@ -17,6 +17,7 @@ import ca.cours5b5.stevendesroches.exceptions.ErreurModele;
 import ca.cours5b5.stevendesroches.modeles.MParametres;
 import ca.cours5b5.stevendesroches.modeles.MParametresPartie;
 import ca.cours5b5.stevendesroches.modeles.MPartie;
+import ca.cours5b5.stevendesroches.modeles.MPartieReseau;
 import ca.cours5b5.stevendesroches.modeles.Modele;
 import ca.cours5b5.stevendesroches.donnees.Disque;
 import ca.cours5b5.stevendesroches.usagers.UsagerCourant;
@@ -222,6 +223,13 @@ public final class ControleurModeles {
 
             MParametres mParametres = (MParametres) getModele(MParametres.class.getSimpleName());
             modele = new MPartie(mParametres.getParametresPartie().cloner());
+            modelesEnMemoire.put(nomModele, modele);
+            listenerGetModele.reagirAuModele(modele);
+
+        }else if(nomModele.equals(MPartieReseau.class.getSimpleName())){
+
+            MParametres mParametres = (MParametres) getModele(MParametres.class.getSimpleName());
+            modele = new MPartieReseau(mParametres.getParametresPartie().cloner());
             modelesEnMemoire.put(nomModele, modele);
             listenerGetModele.reagirAuModele(modele);
 

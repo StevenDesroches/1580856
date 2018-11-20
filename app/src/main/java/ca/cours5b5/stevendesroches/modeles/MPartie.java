@@ -1,5 +1,7 @@
 package ca.cours5b5.stevendesroches.modeles;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -55,8 +57,8 @@ public class MPartie extends Modele implements Fournisseur {
     }
 
 
-    private void fournirActionPlacerJeton(){
-
+    protected void fournirActionPlacerJeton(){
+        Log.d("atelier13",this.getClass().getSimpleName() + "::fournirActionPlacerJeton");
         ControleurAction.fournirAction(this,
                 GCommande.JOUER_COUP_ICI,
                 new ListenerFournisseur() {

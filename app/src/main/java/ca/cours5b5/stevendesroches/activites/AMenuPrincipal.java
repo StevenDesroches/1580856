@@ -42,6 +42,8 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
         fournirActionConnexion();
 
         fournirActionDeco();
+
+        fournirActionJoindreOuCreerPartieReseau();
     }
 
     private void fournirActionOuvrirMenuParametres() {

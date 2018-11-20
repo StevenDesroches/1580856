@@ -46,10 +46,12 @@ public class VPartie extends Vue {
     }
 
     private void observerPartie() {
-        ControleurObservation.observerModele(MPartie.class.getSimpleName(),
+        ControleurObservation.observerModele(getNomModele(),
                 new ListenerObservateur() {
                     @Override
                     public void reagirNouveauModele(Modele modele) {
+
+                        Log.d("TEST13", "reagirNouveauModele: " + modele.toString());
 
                         MPartie partie = getPartie(modele);
 
@@ -99,7 +101,8 @@ public class VPartie extends Vue {
     }
 
     protected String getNomModele(){
-        return null;
+        Log.d("TEST13", this.getClass().getSimpleName() + "::getNomModele()" +MPartie.class.getSimpleName());
+        return MPartie.class.getSimpleName();
     }
 
 }

@@ -136,7 +136,7 @@ public class VGrille extends GridLayout {
 
                 actionEntete.setArguments(entete.getColonne());
                 actionEntete.executerDesQuePossible();
-                
+
             }
         });
 

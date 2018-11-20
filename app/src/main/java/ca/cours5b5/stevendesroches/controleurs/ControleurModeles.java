@@ -266,7 +266,8 @@ public final class ControleurModeles {
 
     }
 
-    private static void chargementViaSourceCouranteOuSuivante(final Modele modele, final String cheminDeSauvegarde, final ListenerGetModele listenerGetModele, final int indiceSourceCourante){ SourceDeDonnees source = sequenceDeChargement[indiceSourceCourante];
+    private static void chargementViaSourceCouranteOuSuivante(final Modele modele, final String cheminDeSauvegarde, final ListenerGetModele listenerGetModele, final int indiceSourceCourante){
+        SourceDeDonnees source = sequenceDeChargement[indiceSourceCourante];
         Log.d("atelier12", ControleurModeles.class.getSimpleName() + "::chargementViaSequenceCouranteOuSuivante");
         Log.d("atelier12", ControleurModeles.class.getSimpleName() + "::chemein = " + cheminDeSauvegarde);
         source.chargerModele(cheminDeSauvegarde, new ListenerChargement() {

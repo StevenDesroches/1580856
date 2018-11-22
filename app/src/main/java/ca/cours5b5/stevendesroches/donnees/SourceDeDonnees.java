@@ -1,23 +1,23 @@
 package ca.cours5b5.stevendesroches.donnees;
 
+
 import java.util.Map;
 
+import ca.cours5b5.stevendesroches.global.GConstantes;
 
 public abstract class SourceDeDonnees {
 
-    public abstract Map<String, Object> chargerModele(final String cheminSauvegarde);
-
-    public abstract void sauvegarderModele(final String cheminSauvegarde, final Map<String, Object> objetJson);
-
     public abstract void chargerModele(final String cheminSauvegarde, final ListenerChargement listenerChargement);
 
-    public abstract void detruireSauvegarde(final String cheminSauvegarde);
+    public abstract void sauvegarderModele(String cheminSauvegarde, Map<String, Object> objetJson);
 
-    protected static String getNomModele(String cheminSauvegarde){
-        String[] cheminSplit = cheminSauvegarde.split("/");
-        String nomModele = cheminSplit[0];
+    public abstract void detruireSauvegarde(String cheminSauvegarde);
 
-        return nomModele;
+    protected String getNomModele(String cheminSauvegarde){
+
+        return cheminSauvegarde.split(GConstantes.SEPARATEUR_DE_CHEMIN)[0];
+
     }
+
 
 }

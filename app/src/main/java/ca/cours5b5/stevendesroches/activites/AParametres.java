@@ -1,7 +1,7 @@
 package ca.cours5b5.stevendesroches.activites;
 
+
 import android.os.Bundle;
-import android.util.Log;
 
 import ca.cours5b5.stevendesroches.R;
 import ca.cours5b5.stevendesroches.controleurs.ControleurAction;
@@ -12,7 +12,9 @@ import ca.cours5b5.stevendesroches.global.GCommande;
 import ca.cours5b5.stevendesroches.modeles.MParametres;
 import ca.cours5b5.stevendesroches.modeles.MPartie;
 
+
 public class AParametres extends Activite implements Fournisseur{
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,34 +25,19 @@ public class AParametres extends Activite implements Fournisseur{
 
     }
 
+
     private void fournirActions() {
 
-        fournirActionEffacerPartie();
-    }
-
-    private void fournirActionEffacerPartie() {
-
         ControleurAction.fournirAction(this,
-                GCommande.EFFACER_PARTIE,
+                GCommande.EFFACER_PARTIE_COURANTE,
                 new ListenerFournisseur() {
                     @Override
                     public void executer(Object... args) {
 
-                        transitionEffacerPartie();
+                        ControleurModeles.detruireModele(MPartie.class.getSimpleName());
 
                     }
                 });
-    }
-
-    private void transitionEffacerPartie(){
-
-        //ControleurModeles.detruireModele(MParametres.class.getSimpleName());
-
-        //supprimer les parametres
-        //ControleurModeles.detruireSauvegarde(MParametres.class.getSimpleName());
-        //supprimer la partie courante
-        ControleurModeles.detruireSauvegarde(MPartie.class.getSimpleName());
-
     }
 
     @Override
@@ -60,5 +47,6 @@ public class AParametres extends Activite implements Fournisseur{
         ControleurModeles.sauvegarderModele(MParametres.class.getSimpleName());
 
     }
+
 
 }

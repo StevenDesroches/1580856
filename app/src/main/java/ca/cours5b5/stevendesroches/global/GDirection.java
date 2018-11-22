@@ -1,5 +1,7 @@
 package ca.cours5b5.stevendesroches.global;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class GDirection {
@@ -10,22 +12,29 @@ public class GDirection {
     public static List<GDirection> directions;
 
     static{
-        directions.add(new GDirection(0, 4)); //haut
-        directions.add(new GDirection(4, 0)); //droite
-        directions.add(new GDirection(4, 4)); //diagonal
 
-        //(BONUS: a-t-on besoin de toutes les créer?)
-        //Cela depend de comment la vérification est faite.
-        //Si elle est fait à partir de la case qui vient d'être jouer.
-        //il faudra vérifier dans toutes les directions avec comme origine la case qui vient d'être jouée.
-        //Dans ce cas il faut 8 directions.
+        directions = new ArrayList<>();
 
-        //Dans le cas où la vérification est faite sur chaque case.
-        //il n<
+        // horizontal
+        directions.add(new GDirection(1,0));
+
+        // vertical
+        directions.add(new GDirection(0,1));
+
+        // diagonale /
+        directions.add(new GDirection(1,1));
+
+        // diagonale \
+        directions.add(new GDirection(1,-1));
+
     }
 
     public GDirection(int incrementHorizontal, int incrementVertical){
+
         this.incrementHorizontal = incrementHorizontal;
         this.incrementVertical = incrementVertical;
+
     }
+
+
 }

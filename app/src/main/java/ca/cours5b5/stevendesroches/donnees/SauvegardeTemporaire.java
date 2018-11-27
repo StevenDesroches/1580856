@@ -1,103 +1,75 @@
 package ca.cours5b5.stevendesroches.donnees;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import java.util.Map;
 
-
-import ca.cours5b5.stevendesroches.global.GConstantes;
-import ca.cours5b5.stevendesroches.modeles.MParametres;
-import ca.cours5b5.stevendesroches.modeles.MPartie;
+import ca.cours5b5.stevendesroches.exceptions.ErreurModele;
 import ca.cours5b5.stevendesroches.serialisation.Jsonification;
 
 public class SauvegardeTemporaire extends SourceDeDonnees {
 
-    private Bundle bundle;
+    protected Bundle bundle;
+
+    public SauvegardeTemporaire(){}
 
     public SauvegardeTemporaire(Bundle bundle){
         this.bundle = bundle;
     }
 
     @Override
-    public Map<String, Object> chargerModele(String cheminSauvegarde) {
+    public void chargerModele(String cheminSauvegarde, ListenerChargement listenerChargement) {
+        if(bundle == null){
+            listenerChargement.reagirErreur(new ErreurModele("Le bundle est null"));
+            return;
+        }
 
-        if (checkNomModele(getCle(cheminSauvegarde))){ //verifier que la clé est sous forme nomModele
-            if(bundle != null && bundle.containsKey(getCle(cheminSauvegarde))){
+        String cle = getCle(cheminSauvegarde);
 
-                String json = bundle.getString(getCle(cheminSauvegarde));
+        if(bundle.containsKey(cle)){
 
-                Map<String, Object> objetJson = Jsonification.aPartirChaineJson(json);
+            String json = bundle.getString(cle);
 
-                return objetJson;
+            Map<String, Object> objetJson = Jsonification.aPartirChaineJson(json);
 
-            } else {
+            listenerChargement.reagirSucces(objetJson);
 
-                return null;
+        }else{
 
-            }
-        } else {
-
-            return null;
-
+            listenerChargement.reagirErreur(new ErreurModele("La clé " + cheminSauvegarde + " n'est pas dans la sauvegarde temporaire"));
         }
     }
+
 
     @Override
     public void sauvegarderModele(String cheminSauvegarde, Map<String, Object> objetJson) {
-        if(bundle != null){
-
-            String json = Jsonification.enChaineJson(objetJson);
-            bundle.putString(getCle(cheminSauvegarde), json);
-
-        }
-    }
-
-    @Override
-    public void chargerModele(String cheminSauvegarde, ListenerChargement listenerChargement) {
-
-        if (checkNomModele(getCle(cheminSauvegarde))) { //verifier que la clé est sous forme nomModele
-            if(bundle != null && bundle.containsKey(getCle(cheminSauvegarde))){
-                Log.d("atelier12", "chargement de la sauvegardeTemporaire");
-                String json = bundle.getString(getCle(cheminSauvegarde));
-
-                Map<String, Object> objetJson = Jsonification.aPartirChaineJson(json);
-
-                listenerChargement.reagirSucces(objetJson);
-
-            }else{
-                Log.d("atelier12", "non-chargement de la sauvegardeTemporaire");
-                listenerChargement.reagirErreur(null);
-
-            }
+        if(bundle == null){
+            return;
         }
 
+        String cle = getCle(cheminSauvegarde);
+
+        String json = Jsonification.enChaineJson(objetJson);
+        bundle.putString(cle, json);
+
     }
+
+
+    private String getCle(String cheminSauvegarde){
+        return getNomModele(cheminSauvegarde);
+    }
+
 
     @Override
     public void detruireSauvegarde(String cheminSauvegarde) {
-        if(bundle != null && bundle.containsKey(getCle(cheminSauvegarde))){
-            bundle.clear();
-            Log.d("atelier60", "Destruction de la sauvegarde temporaire");
-        }else{
-            Log.d("atelier60", "non-Destruction de la sauvegarde temporaire");
-        }
-    }
-
-    private String getCle(String cheminSauvegarde){ return getNomModele(cheminSauvegarde); }
-
-    private Boolean checkNomModele(String cheminSauvegarde){
-        boolean retour = true;
-
-        Log.d("atelier12", this.getClass().getSimpleName() + "::checkNomModele = "+ cheminSauvegarde);
-        if(cheminSauvegarde.contains("/")){
-            retour = false;
-        } else if (cheminSauvegarde.contains(".")) {
-            retour = false;
+        if(bundle == null){
+            return;
         }
 
-        Log.d("atelier12", this.getClass().getSimpleName() + "::checkNomModele = "+ retour);
-        return retour;
+        String cle = getCle(cheminSauvegarde);
+
+        bundle.remove(cle);
     }
+
 
 }

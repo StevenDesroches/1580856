@@ -1,5 +1,6 @@
 package ca.cours5b5.stevendesroches.proxy;
 
+
 import android.util.Log;
 
 import com.google.firebase.database.ChildEventListener;
@@ -23,52 +24,73 @@ public class ProxyListe extends Proxy implements Fournisseur {
 
     private Query requete;
 
-    private Action actionNouvelItem = ControleurAction.demanderAction(GCommande.RECEVOIR_COUP_RESEAU);
+    private Action actionNouvelItem;
+    private Action actionItemDetruit;
 
-    private String key = null;
+    private List<DatabaseReference> noeudsAjoutes;
 
-    private List<DatabaseReference> noeudsAjoutes = new ArrayList<>();
-
-    public ProxyListe(String cheminServeur){
+    public ProxyListe(String cheminServeur) {
         super(cheminServeur);
+
+        noeudsAjoutes = new ArrayList<>();
+
     }
+
 
     public void setActionNouvelItem(GCommande commande){
-        actionNouvelItem = ControleurAction.demanderAction(commande);
+
+        this.actionNouvelItem = ControleurAction.demanderAction(commande);
 
     }
+
+
+    public void setActionItemDetruit(GCommande commande){
+
+        this.actionItemDetruit = ControleurAction.demanderAction(commande);
+
+    }
+
 
     public void ajouterValeur(Object valeur) {
 
-        noeudServeur.push().setValue(valeur);
-        noeudsAjoutes.add(noeudServeur);
+        DatabaseReference noeudAjoute = noeudServeur.push();
+
+        noeudAjoute.setValue(valeur);
+
+        noeudsAjoutes.add(noeudAjoute);
 
     }
 
+
     @Override
-    public void connecterAuServeur() {
+    public void connecterAuServeur(){
         super.connecterAuServeur();
 
         creerListener();
 
-        requete = noeudServeur;
+        requete = getRequete();
 
         requete.addChildEventListener(childEventListener);
 
-
-
     }
 
+
     private void creerListener(){
+
         childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                //Log.d("CleValues", "key1: "+key + "   KEY @ 2 : " + dataSnapshot.getKey());
-                //if (!dataSnapshot.getKey().equals(key) || key == null) {
-                //    Object valeurAjoutee = dataSnapshot.getValue();
-                //    actionNouvelItem.setArguments(Integer.parseInt(valeurAjoutee.toString()));
-                //    actionNouvelItem.executerDesQuePossible();
-                //}
+
+                Object valeur = dataSnapshot.getValue();
+
+                if(actionNouvelItem != null){
+
+                    actionNouvelItem.setArguments(valeur);
+
+                    actionNouvelItem.executerDesQuePossible();
+
+                }
+
 
             }
 
@@ -79,6 +101,16 @@ public class ProxyListe extends Proxy implements Fournisseur {
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                Object valeur = dataSnapshot.getValue();
+
+                if(actionItemDetruit != null){
+
+                    actionItemDetruit.setArguments(valeur);
+
+                    actionItemDetruit.executerDesQuePossible();
+
+                }
 
             }
 
@@ -94,20 +126,32 @@ public class ProxyListe extends Proxy implements Fournisseur {
         };
     }
 
+
     protected Query getRequete(){
-        //on veut trier une cle et limiter a un nombre max (utiise une constante)
-        return null;
+
+        return noeudServeur.orderByKey().limitToFirst(GConstantes.NOMBRE_DE_VALEURS_A_CHARGER_DU_SERVEUR_PAR_DEFAUT);
+
     }
+
 
     @Override
     public void deconnecterDuServeur() {
-        requete.removeEventListener(childEventListener);
+
+        noeudServeur.removeEventListener(childEventListener);
+
+        noeudsAjoutes.clear();
+
         super.deconnecterDuServeur();
+
     }
+
 
     @Override
     public void detruireValeurs() {
-        noeudServeur.removeValue();
+
+        for(DatabaseReference noeud : noeudsAjoutes){
+            noeud.removeValue();
+        }
     }
 
 

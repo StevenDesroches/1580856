@@ -19,6 +19,18 @@ public class APartie extends Activite implements Fournisseur {
 
         fournirActionTerminerPartie();
 
+        fournirActionEffacerPartie();
+
+    }
+
+    private void fournirActionEffacerPartie() {
+
+        ControleurAction.fournirAction(this, GCommande.EFFACER_PARTIE_COURANTE, new ListenerFournisseur() {
+            @Override
+            public void executer(Object... args) {
+                ControleurModeles.detruireModele(MPartie.class.getSimpleName());
+            }
+        });
     }
 
 
@@ -31,6 +43,7 @@ public class APartie extends Activite implements Fournisseur {
                     public void executer(Object... args) {
 
                         quitterCetteActivite();
+                        //ControleurModeles.detruireModele(MPartie.class.getSimpleName());
 
                     }
                 });

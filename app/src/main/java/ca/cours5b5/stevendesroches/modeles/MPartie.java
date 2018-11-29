@@ -45,6 +45,8 @@ public class MPartie extends Modele implements Fournisseur {
 
         fournirActionPlacerJeton();
 
+        ControleurAction.demanderAction(GCommande.VERIFIER_ENTETES).executerDesQuePossible();
+
     }
 
     private void initialiser() {
@@ -59,7 +61,6 @@ public class MPartie extends Modele implements Fournisseur {
     private void initialiserGrille() {
         grille = new MGrille(parametres.getLargeur());
     }
-
 
     protected void fournirActionPlacerJeton() {
 
@@ -90,19 +91,11 @@ public class MPartie extends Modele implements Fournisseur {
 
         if (siCoupLegal(colonne)) {
             jouerCoupLegal(colonne);
-
             if (!siCoupLegal(colonne)){
-                desactiverEnteteSpecifique(colonne);
+                ControleurAction.demanderAction(GCommande.VERIFIER_ENTETES).executerDesQuePossible();
             }
         }
     }
-
-    private void desactiverEnteteSpecifique(int colonne) {
-        Action action = ControleurAction.demanderAction(GCommande.DESACTIVER_ENTETE_SPECIFIQUE);
-        action.setArguments(colonne);
-        action.executerDesQuePossible();
-    }
-
 
     protected void jouerCoupLegal(int colonne) {
 
@@ -194,6 +187,7 @@ public class MPartie extends Modele implements Fournisseur {
             jouerCoup(coup);
 
         }
+
     }
 
 

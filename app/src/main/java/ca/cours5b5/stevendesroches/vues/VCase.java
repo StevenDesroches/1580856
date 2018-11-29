@@ -13,6 +13,7 @@ import ca.cours5b5.stevendesroches.modeles.MJeton;
 
 public class VCase extends AppCompatButton {
 
+    private boolean contientCouleur = false;
 
     public VCase(Context context) {
         super(context);
@@ -48,13 +49,12 @@ public class VCase extends AppCompatButton {
     }
 
     public void afficherJeton(MJeton jeton) {
-
         afficherCouleurJeton(jeton);
-
     }
 
-
     private void afficherCouleurJeton(MJeton jeton) {
+        this.contientCouleur = true;
+
         switch (jeton.getCouleur()){
 
             case ROUGE:
@@ -71,6 +71,8 @@ public class VCase extends AppCompatButton {
 
         }
     }
+
+    public boolean contientCouleur(){ return this.contientCouleur; }
 
 
 }

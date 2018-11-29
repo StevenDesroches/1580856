@@ -12,6 +12,9 @@ import java.util.List;
 
 import ca.cours5b5.stevendesroches.controleurs.Action;
 import ca.cours5b5.stevendesroches.controleurs.ControleurAction;
+import ca.cours5b5.stevendesroches.controleurs.interfaces.Fournisseur;
+import ca.cours5b5.stevendesroches.controleurs.interfaces.ListenerFournisseur;
+import ca.cours5b5.stevendesroches.exceptions.ErreurAction;
 import ca.cours5b5.stevendesroches.global.GCommande;
 import ca.cours5b5.stevendesroches.global.GCouleur;
 import ca.cours5b5.stevendesroches.modeles.MColonne;
@@ -19,7 +22,7 @@ import ca.cours5b5.stevendesroches.modeles.MGrille;
 import ca.cours5b5.stevendesroches.modeles.MJeton;
 
 
-public class VGrille extends GridLayout {
+public class VGrille extends GridLayout implements Fournisseur {
 
     public VGrille(Context context) {
         super(context);
@@ -52,7 +55,44 @@ public class VGrille extends GridLayout {
 
         demanderActionEntete();
 
+        fournirActionDesactiverEntetes();
 
+        fournirVerifierEntetes();
+
+    }
+
+    private void fournirVerifierEntetes() {
+        ControleurAction.fournirAction(this,
+                GCommande.VERIFIER_ENTETES,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+
+                        for (Colonne col : colonnesDeCases) {
+
+                            for (VCase cas : col) {
+                                Log.d("ALLO2", "la couleur : "+cas.contientCouleur());
+                                if (cas.contientCouleur()){
+
+                                    entetes.get(colonnesDeCases.indexOf(col)).setEnabled(false);
+                                }
+                            }
+                        }
+                    }
+                });
+    }
+
+    private void fournirActionDesactiverEntetes() {
+        ControleurAction.fournirAction(this,
+                GCommande.DESACTIVER_ENTETE,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+                        for (VEntete entete: entetes) {
+                            entete.setEnabled(false);
+                        }
+                    }
+                });
     }
 
     private void demanderActionEntete() {

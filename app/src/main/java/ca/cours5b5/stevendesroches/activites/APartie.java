@@ -19,6 +19,8 @@ public class APartie extends Activite implements Fournisseur {
 
         fournirActionTerminerPartie();
 
+        ControleurAction.demanderAction(GCommande.VERIFIER_ENTETES).executerDesQuePossible();
+
     }
 
     private void fournirActionTerminerPartie() {
@@ -41,6 +43,12 @@ public class APartie extends Activite implements Fournisseur {
     protected void onPause() {
         super.onPause();
         sauvegarderPartie();
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        ControleurAction.demanderAction(GCommande.VERIFIER_ENTETES).executerDesQuePossible();
     }
 
 

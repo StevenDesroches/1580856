@@ -35,5 +35,7 @@
     <string name="ROUGE">rouge</string>
     <string name="JAUNE">jaune</string>
 
+    <string name="verifierCoReseau">Vous devez être connecté pour pouvoir jouer en réseau</string>
+
 
 </resources>

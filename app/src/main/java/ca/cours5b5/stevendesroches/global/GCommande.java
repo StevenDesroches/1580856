@@ -33,5 +33,6 @@ public enum GCommande {
 
     DESACTIVER_ENTETE,
     VERIFIER_ENTETES,
+    DESACTIVER_ENTETE_SPECIFIQUE,
 
 }

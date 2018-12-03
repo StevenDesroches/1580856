@@ -31,7 +31,7 @@ public class MPartie extends Modele implements Fournisseur {
 
     private MGrille grille;
     private GCouleur couleurCourante;
-    private int compt = 0;
+    private boolean jouer = false;
 
     public MPartie(MParametresPartie parametres) {
 
@@ -44,8 +44,6 @@ public class MPartie extends Modele implements Fournisseur {
         initialiserGrille();
 
         fournirActionPlacerJeton();
-
-        ControleurAction.demanderAction(GCommande.VERIFIER_ENTETES).executerDesQuePossible();
 
     }
 
@@ -88,13 +86,25 @@ public class MPartie extends Modele implements Fournisseur {
 
 
     protected void jouerCoup(int colonne) {
+        //Action action = ControleurAction.demanderAction(GCommande.VERIFIER_ENTETES);
 
         if (siCoupLegal(colonne)) {
             jouerCoupLegal(colonne);
-            if (!siCoupLegal(colonne)){
-                ControleurAction.demanderAction(GCommande.VERIFIER_ENTETES).executerDesQuePossible();
+
+            //action.executerDesQuePossible();
+            if (!siCoupLegal(colonne) && jouer){
+                desactiverEnteteSpecifique(colonne);
             }
+            jouer = true;
         }
+
+        //action.executerDesQuePossible();
+    }
+
+    private void desactiverEnteteSpecifique(int colonne) {
+        Action action = ControleurAction.demanderAction(GCommande.DESACTIVER_ENTETE_SPECIFIQUE);
+        action.setArguments(colonne);
+        action.executerDesQuePossible();
     }
 
     protected void jouerCoupLegal(int colonne) {
@@ -183,7 +193,7 @@ public class MPartie extends Modele implements Fournisseur {
         listeCoups.clear();
 
         for(Integer coup : coupsARejouer){
-
+            jouer = false;
             jouerCoup(coup);
 
         }

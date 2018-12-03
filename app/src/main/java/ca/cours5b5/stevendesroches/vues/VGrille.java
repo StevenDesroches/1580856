@@ -1,6 +1,7 @@
 package ca.cours5b5.stevendesroches.vues;
 
 import android.content.Context;
+import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -59,6 +60,28 @@ public class VGrille extends GridLayout implements Fournisseur {
 
         fournirVerifierEntetes();
 
+        fournirDesactiverEnteteSpecifique();
+    }
+
+    private void fournirDesactiverEnteteSpecifique() {
+        ControleurAction.fournirAction(this, GCommande.DESACTIVER_ENTETE_SPECIFIQUE, new ListenerFournisseur() {
+            @Override
+            public void executer(Object... args) {
+                try {
+
+                    int colonne = (Integer) args[0];
+
+                    if (entetes.get(colonne).isEnabled()){
+                        entetes.get(colonne).setEnabled(false);
+                    }
+
+                } catch (ClassCastException e) {
+
+                    throw new ErreurAction(e);
+
+                }
+            }
+        });
     }
 
     private void fournirVerifierEntetes() {
@@ -70,12 +93,9 @@ public class VGrille extends GridLayout implements Fournisseur {
 
                         for (Colonne col : colonnesDeCases) {
 
-                            for (VCase cas : col) {
-                                Log.d("ALLO2", "la couleur : "+cas.contientCouleur());
-                                if (cas.contientCouleur()){
-
-                                    entetes.get(colonnesDeCases.indexOf(col)).setEnabled(false);
-                                }
+                            if (col.get((col.size()-1)).contientCouleur()){
+                                Log.d("ALLO3", "la couleur : " + (col.size()-1) + " ICI : " + colonnesDeCases.indexOf(col));
+                                entetes.get(colonnesDeCases.indexOf(col)).setEnabled(false);
                             }
                         }
                     }

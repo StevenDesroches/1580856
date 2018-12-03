@@ -13,6 +13,7 @@ import ca.cours5b5.stevendesroches.donnees.Serveur;
 import ca.cours5b5.stevendesroches.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.stevendesroches.donnees.SourceDeDonnees;
 import ca.cours5b5.stevendesroches.exceptions.ErreurModele;
+import ca.cours5b5.stevendesroches.global.GCommande;
 import ca.cours5b5.stevendesroches.global.GConstantes;
 import ca.cours5b5.stevendesroches.modeles.Identifiable;
 import ca.cours5b5.stevendesroches.modeles.MParametres;
@@ -186,6 +187,7 @@ public final class ControleurModeles {
                                            ListenerGetModele listenerGetModele) {
 
         listenerGetModele.reagirAuModele(modele);
+        ControleurAction.demanderAction(GCommande.VERIFIER_ENTETES).executerDesQuePossible();
 
     }
 

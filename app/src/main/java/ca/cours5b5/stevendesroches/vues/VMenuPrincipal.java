@@ -1,6 +1,7 @@
 package ca.cours5b5.stevendesroches.vues;
 
 import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import ca.cours5b5.stevendesroches.R;
 import ca.cours5b5.stevendesroches.controleurs.Action;
 import ca.cours5b5.stevendesroches.controleurs.ControleurAction;
 import ca.cours5b5.stevendesroches.global.GCommande;
+import ca.cours5b5.stevendesroches.global.GConstantes;
 import ca.cours5b5.stevendesroches.usagers.UsagerCourant;
 
 
@@ -104,7 +106,16 @@ public class VMenuPrincipal extends Vue {
         boutonPartieReseau.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                actionPartieReseau.executerDesQuePossible();
+
+                if (UsagerCourant.getId().equals(GConstantes.ID_PAR_DEFAUT)){
+
+                    afficherMessageCoNecessaire();
+
+                } else {
+
+                    actionPartieReseau.executerDesQuePossible();
+
+                }
             }
         });
 
@@ -126,6 +137,11 @@ public class VMenuPrincipal extends Vue {
 
             }
         });
+    }
+
+    private void afficherMessageCoNecessaire(){
+        Snackbar fenetre = Snackbar.make(this, getResources().getString(R.string.verifierCoReseau), GConstantes.DELAIS_MESSAGE_AVEC_ACTION);
+        fenetre.show();
     }
 
 

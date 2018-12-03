@@ -19,8 +19,6 @@ public class APartie extends Activite implements Fournisseur {
 
         fournirActionTerminerPartie();
 
-        ControleurAction.demanderAction(GCommande.VERIFIER_ENTETES).executerDesQuePossible();
-
     }
 
     private void fournirActionTerminerPartie() {

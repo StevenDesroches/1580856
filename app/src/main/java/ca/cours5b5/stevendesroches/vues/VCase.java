@@ -8,6 +8,9 @@ import android.view.animation.AnimationUtils;
 
 
 import ca.cours5b5.stevendesroches.R;
+import ca.cours5b5.stevendesroches.controleurs.Action;
+import ca.cours5b5.stevendesroches.controleurs.ControleurAction;
+import ca.cours5b5.stevendesroches.global.GCommande;
 import ca.cours5b5.stevendesroches.modeles.MJeton;
 
 
@@ -70,6 +73,7 @@ public class VCase extends AppCompatButton {
                 break;
 
         }
+
     }
 
     public boolean contientCouleur(){ return this.contientCouleur; }

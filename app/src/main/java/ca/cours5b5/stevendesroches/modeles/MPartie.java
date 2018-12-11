@@ -86,19 +86,16 @@ public class MPartie extends Modele implements Fournisseur {
 
 
     protected void jouerCoup(int colonne) {
-        //Action action = ControleurAction.demanderAction(GCommande.VERIFIER_ENTETES);
 
         if (siCoupLegal(colonne)) {
             jouerCoupLegal(colonne);
 
-            //action.executerDesQuePossible();
             if (!siCoupLegal(colonne) && jouer){
                 desactiverEnteteSpecifique(colonne);
             }
             jouer = true;
         }
 
-        //action.executerDesQuePossible();
     }
 
     private void desactiverEnteteSpecifique(int colonne) {

@@ -26,6 +26,8 @@ import static ca.cours5b5.stevendesroches.global.GConstantes.CODE_CONNEXION_FIRE
 
 public class AMenuPrincipal extends Activite implements Fournisseur {
 
+    private boolean coRequis = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,21 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
 
         fournirActionJoindreOuCreerPartieReseau();
 
+        fournirActionRequisConnexion();
+
+    }
+
+    private void fournirActionRequisConnexion() {
+        ControleurAction.fournirAction(this,
+                GCommande.REQUIS_CONNEXION,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+
+                        coRequis = true;
+                        effectuerConnexion();
+                    }
+                });
     }
 
 
@@ -188,6 +205,9 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
             if (resultCode == RESULT_OK) {
 
                 // Connexion réussie
+                if (coRequis){
+                    transitionAttendreAdversaire();
+                }
 
             } else {
 

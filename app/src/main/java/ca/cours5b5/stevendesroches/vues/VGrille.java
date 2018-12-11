@@ -47,6 +47,8 @@ public class VGrille extends GridLayout implements Fournisseur {
 
     private List<VEntete> entetes;
 
+    private Action action = ControleurAction.demanderAction(GCommande.ANIMATION_COUP);
+
 
     @Override
     protected void onFinishInflate() {
@@ -61,6 +63,30 @@ public class VGrille extends GridLayout implements Fournisseur {
         fournirVerifierEntetes();
 
         fournirDesactiverEnteteSpecifique();
+
+        //fournirActionAnimationCoup();
+
+    }
+
+    private void fournirActionAnimationCoup() {
+        ControleurAction.fournirAction(this, GCommande.ANIMATION_COUP, new ListenerFournisseur() {
+            @Override
+            public void executer(Object... args) {
+                try {
+
+                    VCase vCase = (VCase) args[0];
+                    GCouleur couleurCourante = (GCouleur) args[1];
+                    int code = (Integer) args[2];
+
+                    vCase.animationJeton(couleurCourante, code);
+
+                } catch (ClassCastException e) {
+
+                    throw new ErreurAction(e);
+
+                }
+            }
+        });
     }
 
     private void fournirDesactiverEnteteSpecifique() {
@@ -136,8 +162,8 @@ public class VGrille extends GridLayout implements Fournisseur {
         this.nombreRangees = hauteur + 1;
 
         this.setRowCount(nombreRangees);
-        this.setColumnCount(largeur);
 
+        this.setColumnCount(largeur);
         initialiserColonnes(largeur);
 
         ajouterEnTetes(largeur);
@@ -260,9 +286,29 @@ public class VGrille extends GridLayout implements Fournisseur {
     }
 
     private void afficherJeton(int colonne, int rangee, MJeton jeton){
-
         colonnesDeCases.get(colonne).get(rangee).afficherJeton(jeton);
+    }
 
+    private void animation(int colonne, MJeton jeton){
+        try {
+            for (VCase vCase : colonnesDeCases.get(colonne)) {
+
+                action.setArguments(vCase, jeton.getCouleur(), 1);
+                action.executerDesQuePossible();
+
+                SystemClock.sleep(1);
+
+                action.setArguments(vCase, jeton.getCouleur(), 1);
+                action.executerDesQuePossible();
+
+            }
+
+
+        } catch (ClassCastException e) {
+
+            throw new ErreurAction(e);
+
+        }
     }
 
 }

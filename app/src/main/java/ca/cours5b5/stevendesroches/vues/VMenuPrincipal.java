@@ -42,6 +42,7 @@ public class VMenuPrincipal extends Vue {
     private Button boutonConnexion;
     private Action actionConnexion;
     private Action actionDeconnexion;
+    private Action actionRequisConnexion;
 
 
     @Override
@@ -83,6 +84,8 @@ public class VMenuPrincipal extends Vue {
 
         actionDeconnexion = ControleurAction.demanderAction(GCommande.DECONNEXION);
 
+        actionRequisConnexion = ControleurAction.demanderAction(GCommande.REQUIS_CONNEXION);
+
 
     }
 
@@ -110,6 +113,7 @@ public class VMenuPrincipal extends Vue {
                 if (UsagerCourant.getId().equals(GConstantes.ID_PAR_DEFAUT)){
 
                     afficherMessageCoNecessaire();
+                    actionRequisConnexion.executerDesQuePossible();
 
                 } else {
 

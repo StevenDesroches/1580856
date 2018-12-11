@@ -81,9 +81,9 @@ public class VCase extends AppCompatButton {
     }
 
     public void animationVictoire() {
-        TranslateAnimation anim = new TranslateAnimation(-500,0,0,0);
+        TranslateAnimation anim = new TranslateAnimation(-20,0,-20,0);
         anim.setRepeatCount(10);
-        anim.setDuration(300);
+        anim.setDuration(50);
         anim.setFillAfter(true);
 
         anim.setAnimationListener(new TranslateAnimation.AnimationListener() {
@@ -106,7 +106,7 @@ public class VCase extends AppCompatButton {
 
     void bouger(){
         if (alreadyBouge){
-            TranslateAnimation anim = new TranslateAnimation(0,0,-500,0);
+            TranslateAnimation anim = new TranslateAnimation(0,0,-800,0);
             anim.setDuration(300);
             anim.setFillAfter(true);
 

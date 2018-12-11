@@ -139,9 +139,9 @@ public class MGrille extends Modele  {
 
            if(siCouleurGagneDansCetteDirection(couleur, nouvelleColonne, nouvelleRangee, direction, nouveauPourGagner)){
 
-               Log.d("victoire", "nouvelleCol = " + nouvelleColonne + " nouvelleRangee = " + nouvelleRangee);
+               Log.d("victoire", "Col = " + idColonne + " Rangee = " + idRangee);
 
-               actionVictoire.setArguments(idColonne, idRangee, nouvelleColonne, nouvelleRangee);
+               actionVictoire.setArguments(idColonne, idRangee);
                actionVictoire.executerDesQuePossible();
 
                return true;

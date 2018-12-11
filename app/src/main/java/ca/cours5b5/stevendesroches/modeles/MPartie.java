@@ -110,6 +110,7 @@ public class MPartie extends Modele implements Fournisseur {
 
         if (grille.siCouleurGagne(couleurCourante, parametres.getPourGagner())) {
 
+
             ControleurPartie.getInstance().gagnerPartie(couleurCourante);
 
         } else {

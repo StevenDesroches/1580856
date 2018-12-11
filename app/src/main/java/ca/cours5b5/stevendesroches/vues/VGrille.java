@@ -74,16 +74,7 @@ public class VGrille extends GridLayout implements Fournisseur {
                     int idCol = (Integer) args[0];
                     int idRange = (Integer) args[1];
 
-                    int col = (Integer) args[2];
-                    int range = (Integer) args[3];
-
-                    if (colonnesDeCases.get(idCol).get(idRange).contientCouleur()){
-                        colonnesDeCases.get(idCol).get(idRange).animationVictoire();
-                    }
-
-                    if (colonnesDeCases.get(col).get(range).contientCouleur()){
-                        colonnesDeCases.get(col).get(range).animationVictoire();
-                    }
+                    colonnesDeCases.get(idCol).get(idRange).animationVictoire();
 
                 } catch (ClassCastException e) {
 

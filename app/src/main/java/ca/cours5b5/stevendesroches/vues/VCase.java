@@ -7,6 +7,7 @@ import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 
 
 import ca.cours5b5.stevendesroches.R;
@@ -20,6 +21,7 @@ import ca.cours5b5.stevendesroches.modeles.MJeton;
 public class VCase extends AppCompatButton {
 
     private boolean contientCouleur = false;
+    private boolean alreadyBouge = true;
 
     public VCase(Context context) {
         super(context);
@@ -78,33 +80,55 @@ public class VCase extends AppCompatButton {
         }
     }
 
-    public void animationJeton(GCouleur couleur, int code) {
-        if (!this.contientCouleur){
-            if (code == 0) {
-                switch (couleur){
+    public void animationVictoire() {
+        TranslateAnimation anim = new TranslateAnimation(-500,0,0,0);
+        anim.setRepeatCount(10);
+        anim.setDuration(300);
+        anim.setFillAfter(true);
 
-                    case ROUGE:
-
-                        setBackgroundColor(getResources().getColor(R.color.ROUGE, null));
-
-                        break;
-
-                    case JAUNE:
-
-                        setBackgroundColor(getResources().getColor(R.color.JAUNE, null));
-
-                        break;
-
-                }
-            } else {
-                setBackgroundColor(getResources().getColor(R.color.VIDE, null));
+        anim.setAnimationListener(new TranslateAnimation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
             }
 
-        }
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+            }
+        });
+
+        startAnimation(anim);
 
     }
 
-    public boolean contientCouleur(){ return this.contientCouleur; }
+    void bouger(){
+        if (alreadyBouge){
+            TranslateAnimation anim = new TranslateAnimation(0,0,-500,0);
+            anim.setDuration(300);
+            anim.setFillAfter(true);
 
+            anim.setAnimationListener(new TranslateAnimation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                }
+            });
+
+            startAnimation(anim);
+            alreadyBouge = false;
+        }
+    }
+
+    public boolean contientCouleur(){ return this.contientCouleur; }
 
 }

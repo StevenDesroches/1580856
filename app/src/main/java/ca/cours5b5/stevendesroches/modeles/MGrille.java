@@ -1,5 +1,7 @@
 package ca.cours5b5.stevendesroches.modeles;
 
+import android.util.Log;
+
 import com.google.gson.internal.bind.ObjectTypeAdapter;
 
 import java.util.ArrayList;
@@ -7,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ca.cours5b5.stevendesroches.controleurs.Action;
+import ca.cours5b5.stevendesroches.controleurs.ControleurAction;
 import ca.cours5b5.stevendesroches.exceptions.ErreurSerialisation;
 import ca.cours5b5.stevendesroches.global.GCommande;
 import ca.cours5b5.stevendesroches.global.GCouleur;
@@ -17,10 +21,21 @@ public class MGrille extends Modele  {
 
     private List<MColonne> colonnes;
 
+    private List<Integer> col;
+    private List<Integer> range;
+
+    private Action actionVictoire;
+
 
     public MGrille(int largeur){
 
         colonnes = new ArrayList<>();
+
+        col = new ArrayList<>();
+
+        range = new ArrayList<>();
+
+        actionVictoire = ControleurAction.demanderAction(GCommande.ANIMATION_VICTOIRE);
 
         initialiserColonnes(largeur);
 
@@ -123,6 +138,11 @@ public class MGrille extends Modele  {
            int nouveauPourGagner = pourGagner - 1;
 
            if(siCouleurGagneDansCetteDirection(couleur, nouvelleColonne, nouvelleRangee, direction, nouveauPourGagner)){
+
+               Log.d("victoire", "nouvelleCol = " + nouvelleColonne + " nouvelleRangee = " + nouvelleRangee);
+
+               actionVictoire.setArguments(idColonne, idRangee, nouvelleColonne, nouvelleRangee);
+               actionVictoire.executerDesQuePossible();
 
                return true;
            }

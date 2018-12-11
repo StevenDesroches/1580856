@@ -269,8 +269,6 @@ public final class ControleurModeles {
 
     public static void detruireModele(String nomModele) {
 
-        detruireSauvegardes(nomModele);
-
         Modele modele = modelesEnMemoire.get(nomModele);
 
         if(modele != null){
@@ -287,16 +285,13 @@ public final class ControleurModeles {
         }
     }
 
+    public static void detruireSauvegardes(String nomModele) {
 
-    private static void detruireSauvegardes(String nomModele) {
-
-        String cheminSauvegarde = getCheminSauvegarde(nomModele);
-
-        for(SourceDeDonnees sourceDeDonnees : listeDeSauvegardes){
-
-            sourceDeDonnees.detruireSauvegarde(cheminSauvegarde);
-
+        for(SourceDeDonnees source : listeDeSauvegardes){
+            source.detruireSauvegarde(getCheminSauvegarde(nomModele));
+            detruireModele(nomModele);
         }
+
     }
 
 

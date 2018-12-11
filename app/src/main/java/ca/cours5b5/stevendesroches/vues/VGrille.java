@@ -47,9 +47,6 @@ public class VGrille extends GridLayout implements Fournisseur {
 
     private List<VEntete> entetes;
 
-    private Action action = ControleurAction.demanderAction(GCommande.ANIMATION_COUP);
-
-
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
@@ -64,21 +61,29 @@ public class VGrille extends GridLayout implements Fournisseur {
 
         fournirDesactiverEnteteSpecifique();
 
-        //fournirActionAnimationCoup();
+        fournirActionAnimationVictoire();
 
     }
 
-    private void fournirActionAnimationCoup() {
-        ControleurAction.fournirAction(this, GCommande.ANIMATION_COUP, new ListenerFournisseur() {
+    private void fournirActionAnimationVictoire() {
+        ControleurAction.fournirAction(this, GCommande.ANIMATION_VICTOIRE, new ListenerFournisseur() {
             @Override
             public void executer(Object... args) {
                 try {
 
-                    VCase vCase = (VCase) args[0];
-                    GCouleur couleurCourante = (GCouleur) args[1];
-                    int code = (Integer) args[2];
+                    int idCol = (Integer) args[0];
+                    int idRange = (Integer) args[1];
 
-                    vCase.animationJeton(couleurCourante, code);
+                    int col = (Integer) args[2];
+                    int range = (Integer) args[3];
+
+                    if (colonnesDeCases.get(idCol).get(idRange).contientCouleur()){
+                        colonnesDeCases.get(idCol).get(idRange).animationVictoire();
+                    }
+
+                    if (colonnesDeCases.get(col).get(range).contientCouleur()){
+                        colonnesDeCases.get(col).get(range).animationVictoire();
+                    }
 
                 } catch (ClassCastException e) {
 
@@ -223,7 +228,7 @@ public class VGrille extends GridLayout implements Fournisseur {
 
                 actionEntete.setArguments(colonne);
                 actionEntete.executerDesQuePossible();
-                
+
             }
         });
     }
@@ -287,28 +292,7 @@ public class VGrille extends GridLayout implements Fournisseur {
 
     private void afficherJeton(int colonne, int rangee, MJeton jeton){
         colonnesDeCases.get(colonne).get(rangee).afficherJeton(jeton);
-    }
-
-    private void animation(int colonne, MJeton jeton){
-        try {
-            for (VCase vCase : colonnesDeCases.get(colonne)) {
-
-                action.setArguments(vCase, jeton.getCouleur(), 1);
-                action.executerDesQuePossible();
-
-                SystemClock.sleep(1);
-
-                action.setArguments(vCase, jeton.getCouleur(), 1);
-                action.executerDesQuePossible();
-
-            }
-
-
-        } catch (ClassCastException e) {
-
-            throw new ErreurAction(e);
-
-        }
+        colonnesDeCases.get(colonne).get(rangee).bouger();
     }
 
 }

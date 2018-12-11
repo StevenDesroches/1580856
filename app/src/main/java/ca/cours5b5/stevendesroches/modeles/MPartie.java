@@ -74,7 +74,6 @@ public class MPartie extends Modele implements Fournisseur {
 
                             jouerCoup(colonne);
 
-
                         } catch (ClassCastException e) {
 
                             throw new ErreurAction(e);
@@ -108,7 +107,7 @@ public class MPartie extends Modele implements Fournisseur {
 
         listeCoups.add(colonne);
         grille.placerJeton(colonne, couleurCourante);
-        
+
         if (grille.siCouleurGagne(couleurCourante, parametres.getPourGagner())) {
 
             ControleurPartie.getInstance().gagnerPartie(couleurCourante);

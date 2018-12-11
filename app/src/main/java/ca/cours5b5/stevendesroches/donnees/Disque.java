@@ -82,12 +82,15 @@ public final class Disque extends SourceDeDonnees {
 
     @Override
     public void detruireSauvegarde(String cheminSauvegarde) {
-
         File fichier = getFichier(cheminSauvegarde);
-        fichier.delete();
+
+        if(fichier.exists()) {
+            fichier.delete();
+        } else {
+            Log.d("detruireSauvegarde", this.getClass().getSimpleName()+"::Le fichier n");
+        }
 
     }
-
 
     private File getFichier(String cheminSauvegarde) {
 
@@ -98,7 +101,6 @@ public final class Disque extends SourceDeDonnees {
         return new File(repertoireRacine, nomFichier);
 
     }
-
 
     private String getNomFichier(String nomModele) {
 
